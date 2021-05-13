@@ -30,7 +30,8 @@ android {
         targetSdkVersion globalConfiguration["targetSdkVersion"]
         versionCode globalConfiguration["versionCode"]
         versionName globalConfiguration["versionName"]
-        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "com.jeff.pizza.runner.TestRunner"
     }
 
     signingConfigs {
@@ -40,24 +41,9 @@ android {
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']
+            v1SigningEnabled true
+            v2SigningEnabled true
         }
-    }
-
-    sourceSets {
-
-        betaDebug {
-            res.srcDirs += ['src/beta/res']
-        }
-        betaRelease {
-            res.srcDirs += ['src/beta/res']
-        }
-        storeDebug {
-            res.srcDirs += ['src/store/res']
-        }
-        storeRelease {
-            res.srcDirs += ['src/store/res']
-        }
-
     }
 
     buildTypes {
@@ -83,13 +69,12 @@ android {
     productFlavors {
 
         beta {
+            resValue "string", "app_name", "Pizza Jeff Beta"
             applicationIdSuffix ".beta"
-            resValue "string", "appName", "Init App Beta"
-
         }
 
         store {
-            resValue "string", "appName", "Init App"
+            resValue "string", "app_name", "Pizza Jeff"
         }
     }
 
@@ -101,6 +86,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -111,8 +97,8 @@ dependencies {
     implementation kotlinDependencies.values()
     implementation googleDependencies.values()
     implementation hiltDependencies.values()
-    kapt hiltKaptDependencies.values()
     implementation networkingDependencies.values()
+    kapt hiltKaptDependencies.values()
     implementation uiDependencies.values()
     annotationProcessor uiAnnotationDependencies.values()
 
@@ -122,6 +108,7 @@ dependencies {
     androidTestImplementation("com.schibsted.spain:barista:$barista_version") {
         exclude group: 'org.jetbrains.kotlin'
     }
+    debugImplementation fragmentTestDependencies.values()
 
     implementation project(':login')
     implementation project(':core')

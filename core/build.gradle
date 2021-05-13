@@ -20,6 +20,8 @@ android {
         targetSdkVersion globalConfiguration["compileSdkVersion"]
         versionCode globalConfiguration["versionCode"]
         versionName globalConfiguration["versionName"]
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
