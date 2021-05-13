@@ -1,6 +1,6 @@
 package com.jeff.pizza.login.presentation.usertype.model
 
-import com.jeff.pizza.login.domain.model.UserType
+import com.jeff.pizza.core.domain.model.UserType
 
 
 enum class UserTypeUI {

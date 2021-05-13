@@ -58,4 +58,5 @@ dependencies {
     annotationProcessor uiAnnotationDependencies.values()
 
     implementation project(':core')
+    implementation project(':navigation')
 }
