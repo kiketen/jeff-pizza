@@ -4,19 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeff.pizza.core.presentation.ui.SingleLiveEvent
+import com.jeff.pizza.navigation.NavigationFlow
+import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.splash.domain.usecase.GetUserTypeUseCase
-import com.jeff.pizza.splash.presentation.model.SplashNavigation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-        private val getUserTypeUseCase: GetUserTypeUseCase
+        private val getUserTypeUseCase: GetUserTypeUseCase,
+        private val navigator: Navigator
 ): ViewModel() {
 
-    private val _navigator = SingleLiveEvent<SplashNavigation>()
-    val navigator: LiveData<SplashNavigation> = _navigator
+    private val _a = SingleLiveEvent<Boolean>()
+    val a: LiveData<Boolean> = _a
 
     init {
         viewModelScope.launch {
@@ -25,7 +27,7 @@ class SplashViewModel @Inject constructor(
                         //TODO call to endpoint to get pizzas
                     },
                     onError = {
-                        _navigator.postValue(SplashNavigation.Login)
+                        navigator.navigateToFlow(NavigationFlow.Login)
                     }
             )
         }

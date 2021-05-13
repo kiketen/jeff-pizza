@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.ui.BaseFragment
-import com.jeff.pizza.splash.presentation.model.SplashNavigation
 import com.linhoapps.splash.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,20 +27,13 @@ class SplashFragment: BaseFragment<SplashFragmentBinding>() {
 
     private fun setViewModelObservers() {
         with(viewLifecycleOwner) {
-            observe(viewModel.navigator, ::handleNavigation)
+            observe(viewModel.a, ::renderUIState)
         }
     }
 
-    private fun handleNavigation(navigation: SplashNavigation) {
-        when (navigation) {
-            SplashNavigation.Login -> goToLogin()
-        }
-    }
-
-    private fun goToLogin() {
+    private fun renderUIState(b: Boolean) {
 
     }
-
 }
 
 
