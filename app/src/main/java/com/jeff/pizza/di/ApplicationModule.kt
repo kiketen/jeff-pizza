@@ -17,9 +17,9 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
-        .baseUrl("https://gist.githubusercontent.com/eliseo-juan/c9c124b0899ae9adc254146783c0b764/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build()
+            .baseUrl("https://gist.githubusercontent.com/eliseo-juan/c9c124b0899ae9adc254146783c0b764/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
