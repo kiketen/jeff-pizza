@@ -112,4 +112,5 @@ dependencies {
 
     implementation project(':login')
     implementation project(':core')
+    implementation project(':splash')
 }

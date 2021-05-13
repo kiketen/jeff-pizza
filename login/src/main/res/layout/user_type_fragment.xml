@@ -44,7 +44,7 @@
             android:text="@string/login_married" />
     </RadioGroup>
 
-    <com.jeff.pizza.core.ui.BrandButton
+    <com.jeff.pizza.core.presentation.ui.BrandButton
         android:id="@+id/confirmButtonLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

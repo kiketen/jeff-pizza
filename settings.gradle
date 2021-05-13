@@ -1,3 +1,5 @@
+include ':navigation'
+include ':splash'
 include ':core'
 include ':login'
 include ':app'

@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 apply from: '../dependencies.gradle'
@@ -49,9 +50,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation androidxDependencies.values()
+    implementation architectureComponentsDependencies.values()
     implementation kotlinDependencies.values()
-    implementation uiDependencies.values()
-    annotationProcessor uiAnnotationDependencies.values()
     implementation hiltDependencies.values()
     kapt hiltKaptDependencies.values()
+    implementation uiDependencies.values()
+    annotationProcessor uiAnnotationDependencies.values()
+
+    implementation project(':core')
 }

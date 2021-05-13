@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.jeff.pizza.core.extensions.observe
-import com.jeff.pizza.core.ui.BaseFragment
+import com.jeff.pizza.core.presentation.extensions.observe
+import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.login.databinding.UserTypeFragmentBinding
 import com.jeff.pizza.login.presentation.usertype.model.UserTypeUI
 import com.jeff.pizza.login.presentation.usertype.model.UserTypeUIState
@@ -17,11 +17,7 @@ class UserTypeFragment: BaseFragment<UserTypeFragmentBinding>() {
 
     private val viewModel: UserTypeViewModel by viewModels()
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setBinding(UserTypeFragmentBinding.inflate(inflater, container, false))
         return binding.root
     }
