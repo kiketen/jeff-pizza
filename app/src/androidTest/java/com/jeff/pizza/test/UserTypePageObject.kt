@@ -1,4 +1,4 @@
-package com.jeff.pizza.test.login
+package com.jeff.pizza.test
 
 import androidx.annotation.IdRes
 import com.jeff.pizza.login.R
@@ -12,6 +12,12 @@ import com.schibsted.spain.barista.interaction.BaristaRadioButtonInteractions.cl
 
 
 class UserTypePageObject {
+
+    fun waitForVisible(@IdRes id: Int) {
+        ConditionWatcher.waitForCondition(
+                WaitForVisibleViewInstruction(id)
+        )
+    }
 
     fun assertUserTypeNotSelected() {
         assertUnchecked(R.id.singleOptionLogin)

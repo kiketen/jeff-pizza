@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.linhoapps.splash.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,17 +21,7 @@ class SplashFragment: BaseFragment<SplashFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViewModelObservers()
-    }
-
-    private fun setViewModelObservers() {
-        with(viewLifecycleOwner) {
-            observe(viewModel.a, ::renderUIState)
-        }
-    }
-
-    private fun renderUIState(b: Boolean) {
-
+        viewModel
     }
 }
 

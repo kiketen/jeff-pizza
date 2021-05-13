@@ -26,8 +26,4 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
-
-    @Singleton
-    @Provides
-    fun providesNavigator(): Navigator = NavigatorImpl()
 }
