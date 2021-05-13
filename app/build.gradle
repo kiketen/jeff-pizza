@@ -1,14 +1,14 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
 apply from: '../dependencies.gradle'
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
-apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: "androidx.navigation.safeargs.kotlin"
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -110,10 +110,19 @@ dependencies {
     implementation architectureComponentsDependencies.values()
     implementation kotlinDependencies.values()
     implementation googleDependencies.values()
-    kapt googleKaptDependencies.values()
+    implementation hiltDependencies.values()
+    kapt hiltKaptDependencies.values()
     implementation networkingDependencies.values()
-    implementation imageDependencies.values()
-    annotationProcessor imageAnnotationDependencies.values()
+    implementation uiDependencies.values()
+    annotationProcessor uiAnnotationDependencies.values()
+
+    testImplementation testDependencies.values()
+    androidTestImplementation androidTestDependencies.values()
+    kaptAndroidTest kaptTestDependencies.values()
+    androidTestImplementation("com.schibsted.spain:barista:$barista_version") {
+        exclude group: 'org.jetbrains.kotlin'
+    }
 
     implementation project(':login')
+    implementation project(':core')
 }
