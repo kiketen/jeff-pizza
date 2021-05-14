@@ -1,7 +1,7 @@
 package com.jeff.pizza.login.domain.usecase
 
-import com.jeff.pizza.core.domain.model.UserType
-import com.jeff.pizza.core.domain.resource.UserResource
+import com.jeff.pizza.core.domain.model.user.UserType
+import com.jeff.pizza.core.domain.resource.user.UserResource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

@@ -2,8 +2,6 @@ package com.jeff.pizza.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jeff.pizza.navigation.Navigator
-import com.jeff.pizza.navigation.NavigatorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -49,11 +49,9 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation architectureComponentsDependencies.values()
+    implementation androidxDependencies.values()
     implementation kotlinDependencies.values()
     implementation hiltDependencies.values()
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     kapt hiltKaptDependencies.values()
 
     implementation project(':core')

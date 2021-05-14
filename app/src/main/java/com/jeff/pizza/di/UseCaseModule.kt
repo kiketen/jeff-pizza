@@ -1,8 +1,5 @@
 package com.jeff.pizza.di
 
-import com.jeff.pizza.core.domain.repository.UserDataSource
-import com.jeff.pizza.core.domain.resource.UserResource
-import com.jeff.pizza.core.domain.resource.UserResourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +12,4 @@ import kotlinx.coroutines.Dispatchers
 object UseCaseModule {
     @Provides
     fun providesCoroutineDefaultDispatcher(): CoroutineDispatcher = Dispatchers.IO
-
-    @Provides
-    fun providesUserResource(
-            dataSourceRepository: UserDataSource
-    ): UserResource = UserResourceImpl(dataSourceRepository)
 }

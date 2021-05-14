@@ -54,4 +54,7 @@ dependencies {
     annotationProcessor uiAnnotationDependencies.values()
     implementation hiltDependencies.values()
     kapt hiltKaptDependencies.values()
+    implementation networkingDependencies.values()
+    api databaseDependencies.values()
+    kapt databaseAnnotationDependencies.values()
 }
