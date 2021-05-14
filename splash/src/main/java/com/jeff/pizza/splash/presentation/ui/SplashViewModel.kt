@@ -1,5 +1,7 @@
 package com.jeff.pizza.splash.presentation.ui
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeff.pizza.core.domain.usecase.DelayUseCase
@@ -7,6 +9,7 @@ import com.jeff.pizza.core.domain.usecase.GetProductsUseCase
 import com.jeff.pizza.navigation.NavigationFlow
 import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.splash.domain.usecase.GetUserTypeUseCase
+import com.jeff.pizza.splash.presentation.model.SplashUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,6 +26,9 @@ class SplashViewModel @Inject constructor(
         private const val SPLASH_SCREEN_DELAY_IN_MILLISECONDS = 1000L
     }
 
+    private val _uiState = MutableLiveData<SplashUIState>()
+    val uiState: LiveData<SplashUIState> = _uiState
+
     init {
         viewModelScope.launch {
             getUserTypeUseCase.execute().either(
@@ -36,14 +42,19 @@ class SplashViewModel @Inject constructor(
         }
     }
 
+    fun onRetryClick() {
+        getProducts()
+    }
+
     private fun getProducts() {
+        _uiState.value = SplashUIState.Loading
         viewModelScope.launch {
             getProductsUseCase.execute(refresh = true).either(
                     onSuccess = {
                         navigator.navigateToFlow(NavigationFlow.Products)
                     },
                     onError = {
-                        //TODO show error
+                        _uiState.postValue(SplashUIState.Error)
                     }
             )
         }
