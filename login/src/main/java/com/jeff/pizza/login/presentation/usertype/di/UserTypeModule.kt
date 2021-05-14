@@ -1,8 +1,6 @@
 package com.jeff.pizza.login.presentation.usertype.di
 
-import com.jeff.pizza.core.domain.repository.UserDataSource
-import com.jeff.pizza.core.domain.resource.UserResource
-import com.jeff.pizza.core.domain.resource.UserResourceImpl
+import com.jeff.pizza.core.domain.resource.user.UserResource
 import com.jeff.pizza.login.domain.usecase.SetUserTypeUseCase
 import com.jeff.pizza.login.domain.usecase.SetUserTypeUseCaseImpl
 import dagger.Module

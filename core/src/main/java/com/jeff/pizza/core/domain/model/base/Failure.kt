@@ -1,4 +1,4 @@
-package com.jeff.pizza.core.presentation.model
+package com.jeff.pizza.core.domain.model.base
 
 sealed class Failure {
     object NoData: Failure()

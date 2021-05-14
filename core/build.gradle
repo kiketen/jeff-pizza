@@ -24,6 +24,15 @@ android {
         versionName globalConfiguration["versionName"]
 
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
     }
 
     buildTypes {
@@ -54,4 +63,7 @@ dependencies {
     annotationProcessor uiAnnotationDependencies.values()
     implementation hiltDependencies.values()
     kapt hiltKaptDependencies.values()
+    implementation networkingDependencies.values()
+    api databaseDependencies.values()
+    kapt databaseAnnotationDependencies.values()
 }

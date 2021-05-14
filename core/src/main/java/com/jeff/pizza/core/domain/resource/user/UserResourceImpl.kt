@@ -1,9 +1,9 @@
-package com.jeff.pizza.core.domain.resource
+package com.jeff.pizza.core.domain.resource.user
 
-import com.jeff.pizza.core.domain.model.UserType
-import com.jeff.pizza.core.domain.repository.UserDataSource
-import com.jeff.pizza.core.presentation.model.Either
-import com.jeff.pizza.core.presentation.model.Failure
+import com.jeff.pizza.core.domain.model.user.UserType
+import com.jeff.pizza.core.domain.repository.user.UserDataSource
+import com.jeff.pizza.core.domain.model.base.Either
+import com.jeff.pizza.core.domain.model.base.Failure
 import javax.inject.Inject
 
 

@@ -1,6 +1,6 @@
 package com.jeff.pizza.splash.presentation.di
 
-import com.jeff.pizza.core.domain.resource.UserResource
+import com.jeff.pizza.core.domain.resource.user.UserResource
 import com.jeff.pizza.core.domain.usecase.DelayUseCase
 import com.jeff.pizza.core.domain.usecase.DelayUseCaseImpl
 import com.jeff.pizza.splash.domain.usecase.GetUserTypeUseCase
