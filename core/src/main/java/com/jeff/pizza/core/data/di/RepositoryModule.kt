@@ -1,10 +1,9 @@
-package com.jeff.pizza.di
+package com.jeff.pizza.core.data.di
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.jeff.pizza.AppDatabase
-import com.jeff.pizza.core.data.repository.products.ProductsDAO
+import com.jeff.pizza.core.data.repository.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,10 +30,5 @@ object RepositoryModule {
                 AppDatabase::class.java,
                 "AppDatabase"
         ).build()
-    }
-
-    @Provides
-    fun provideProductsDAO(appDatabase: AppDatabase): ProductsDAO {
-        return appDatabase.productsDAO()
     }
 }

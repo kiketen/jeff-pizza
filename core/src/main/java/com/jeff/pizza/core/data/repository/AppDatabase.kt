@@ -1,4 +1,4 @@
-package com.jeff.pizza
+package com.jeff.pizza.core.data.repository
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

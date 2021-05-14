@@ -1,5 +1,6 @@
 package com.jeff.pizza.core.data.di
 
+import com.jeff.pizza.core.data.repository.AppDatabase
 import com.jeff.pizza.core.data.repository.products.ProductsApiDefinition
 import com.jeff.pizza.core.data.repository.products.ProductsApiImpl
 import com.jeff.pizza.core.data.repository.products.ProductsDAO
@@ -28,4 +29,9 @@ object ProductsRepositoryModule {
     fun providesProductsDataSource(
             productsDAO: ProductsDAO
     ): ProductsDataSource = ProductsDataSourceImpl(productsDAO)
+
+    @Provides
+    fun provideProductsDAO(appDatabase: AppDatabase): ProductsDAO {
+        return appDatabase.productsDAO()
+    }
 }

@@ -32,15 +32,6 @@ android {
         versionName globalConfiguration["versionName"]
 
         testInstrumentationRunner "com.jeff.pizza.runner.TestRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"]
-            }
-        }
     }
 
     signingConfigs {
@@ -110,8 +101,6 @@ dependencies {
     kapt hiltKaptDependencies.values()
     implementation uiDependencies.values()
     annotationProcessor uiAnnotationDependencies.values()
-    api databaseDependencies.values()
-    kapt databaseAnnotationDependencies.values()
 
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
