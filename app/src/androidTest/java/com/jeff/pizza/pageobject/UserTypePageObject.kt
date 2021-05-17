@@ -1,4 +1,4 @@
-package com.jeff.pizza.test
+package com.jeff.pizza.pageobject
 
 import androidx.annotation.IdRes
 import com.jeff.pizza.login.R
