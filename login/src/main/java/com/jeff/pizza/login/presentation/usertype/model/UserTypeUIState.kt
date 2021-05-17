@@ -5,4 +5,5 @@ sealed class UserTypeUIState {
     object Unselected : UserTypeUIState()
     object Selected : UserTypeUIState()
     object Loading : UserTypeUIState()
+    object Error: UserTypeUIState()
 }

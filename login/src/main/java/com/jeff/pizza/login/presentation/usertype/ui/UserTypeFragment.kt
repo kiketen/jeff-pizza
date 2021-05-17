@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.ui.BaseFragment
+import com.jeff.pizza.login.R
 import com.jeff.pizza.login.databinding.UserTypeFragmentBinding
 import com.jeff.pizza.login.presentation.usertype.model.UserTypeUI
 import com.jeff.pizza.login.presentation.usertype.model.UserTypeUIState
@@ -55,6 +57,7 @@ class UserTypeFragment: BaseFragment<UserTypeFragmentBinding>() {
                 UserTypeUIState.Unselected -> confirmButtonLogin.isEnabled = false
                 UserTypeUIState.Selected -> confirmButtonLogin.isEnabled = true
                 UserTypeUIState.Loading -> confirmButtonLogin.isLoading = true
+                UserTypeUIState.Error -> showErrorState()
             }
         }
     }
@@ -66,6 +69,13 @@ class UserTypeFragment: BaseFragment<UserTypeFragmentBinding>() {
                 marriedOptionLogin.isChecked -> UserTypeUI.MARRIED
                 else -> UserTypeUI.UNKNOWN
             }
+        }
+    }
+
+    private fun showErrorState() {
+        with(binding) {
+            confirmButtonLogin.isLoading = false
+            Snackbar.make(root, R.string.login_error, Snackbar.LENGTH_SHORT).show()
         }
     }
 
