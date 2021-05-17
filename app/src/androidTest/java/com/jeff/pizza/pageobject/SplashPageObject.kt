@@ -1,4 +1,4 @@
-package com.jeff.pizza.test
+package com.jeff.pizza.pageobject
 
 import com.jeff.pizza.R
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed

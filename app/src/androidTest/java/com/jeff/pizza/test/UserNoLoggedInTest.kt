@@ -4,6 +4,8 @@ import android.content.SharedPreferences
 import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.di.ApplicationModule
 import com.jeff.pizza.login.R
+import com.jeff.pizza.pageobject.SplashPageObject
+import com.jeff.pizza.pageobject.UserTypePageObject
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -13,10 +15,10 @@ import org.junit.Test
 import javax.inject.Inject
 
 @UninstallModules(
-        ApplicationModule::class
+    ApplicationModule::class
 )
 @HiltAndroidTest
-class UserNoLoggedInTest: BaseFragmentTest() {
+class UserNoLoggedInTest : BaseFragmentTest() {
 
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)

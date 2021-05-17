@@ -11,6 +11,7 @@ import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.splash.domain.usecase.GetUserTypeUseCase
 import com.jeff.pizza.splash.presentation.model.SplashUIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,7 +34,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             getUserTypeUseCase.execute().either(
                     onSuccess = {
-                        getProducts()
+                        getProducts(SPLASH_SCREEN_DELAY_IN_MILLISECONDS)
                     },
                     onError = {
                         navigateToLoginAfterDelay()
@@ -43,13 +44,16 @@ class SplashViewModel @Inject constructor(
     }
 
     fun onRetryClick() {
-        getProducts()
+        getProducts(delayInMilliseconds = 0)
     }
 
-    private fun getProducts() {
+    private fun getProducts(delayInMilliseconds: Long) {
         _uiState.value = SplashUIState.Loading
         viewModelScope.launch {
-            getProductsUseCase.execute(refresh = true).either(
+            val delayResponse = async { delayUseCase.execute(delayInMilliseconds) }
+            val productsResponse = async { getProductsUseCase.execute(refresh = true) }
+            delayResponse.await()
+            productsResponse.await().either(
                     onSuccess = {
                         navigator.navigateToFlow(NavigationFlow.Products)
                     },
