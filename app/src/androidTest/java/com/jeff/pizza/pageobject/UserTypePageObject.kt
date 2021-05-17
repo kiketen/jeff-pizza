@@ -8,10 +8,11 @@ import com.schibsted.spain.barista.assertion.BaristaCheckedAssertions.assertChec
 import com.schibsted.spain.barista.assertion.BaristaCheckedAssertions.assertUnchecked
 import com.schibsted.spain.barista.assertion.BaristaEnabledAssertions.assertDisabled
 import com.schibsted.spain.barista.assertion.BaristaEnabledAssertions.assertEnabled
+import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import com.schibsted.spain.barista.interaction.BaristaRadioButtonInteractions.clickRadioButtonItem
 
 
-class UserTypePageObject {
+class UserTypePageObject: PageObject {
 
     fun waitForVisible(@IdRes id: Int) {
         ConditionWatcher.waitForCondition(
@@ -30,7 +31,15 @@ class UserTypePageObject {
         assertEnabled(R.id.confirmButtonLogin)
     }
 
+    fun assertLoginError() {
+        assertTextVisible(R.string.login_error)
+    }
+
     fun onUserTypeClick(@IdRes typeOptionId: Int) {
         clickRadioButtonItem(R.id.userTypeOptionsLogin, typeOptionId)
+    }
+
+    fun onConfirmButtonClick() {
+        clickOn(R.id.confirmButtonLogin)
     }
 }
