@@ -4,6 +4,8 @@
     <string name="login_single">Single</string>
     <string name="login_title">What kind of user do you are?</string>
 
+    <string name="product_price_since">from %1$s €</string>
+
     <string name="retry">Retry</string>
     <string name="unexpected_error">Oops! Error getting data</string>
 </resources>
