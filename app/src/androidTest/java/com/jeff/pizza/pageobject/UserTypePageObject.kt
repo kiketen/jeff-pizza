@@ -14,12 +14,6 @@ import com.schibsted.spain.barista.interaction.BaristaRadioButtonInteractions.cl
 
 class UserTypePageObject: PageObject {
 
-    fun waitForVisible(@IdRes id: Int) {
-        ConditionWatcher.waitForCondition(
-                WaitForVisibleViewInstruction(id)
-        )
-    }
-
     fun assertUserTypeNotSelected() {
         assertUnchecked(R.id.singleOptionLogin)
         assertUnchecked(R.id.marriedOptionLogin)

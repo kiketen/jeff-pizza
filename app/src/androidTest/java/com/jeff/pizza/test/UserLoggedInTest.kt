@@ -6,7 +6,9 @@ import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.core.data.repository.user.UserDataSourceRepository
 import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.di.ApplicationModule
+import com.jeff.pizza.mockers.productDetails
 import com.jeff.pizza.mockers.products
+import com.jeff.pizza.pageobject.ProductDetailsPageObject
 import com.jeff.pizza.pageobject.ProductsPageObject
 import com.jeff.pizza.pageobject.SplashPageObject
 import com.jeff.pizza.utils.readStringFromFile
@@ -43,7 +45,7 @@ class UserLoggedInTest: BaseFragmentTest() {
     }
 
     @Test
-    fun givenLoggedInUserTypeWhenStartsAppThenShowProducts() {
+    fun givenLoggedInUserTypeWhenClickOnProductThenShowProductDetails() {
         userDataSource.setUserType(UserType.SINGLE)
         mockServer.dispatcher = object: Dispatcher() {
             override fun dispatch(request: RecordedRequest): MockResponse {
@@ -57,6 +59,10 @@ class UserLoggedInTest: BaseFragmentTest() {
         ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
             assertProductsVisible(products, activityRule.activity)
+            clickProduct(products.lastIndex)
+        }
+        ProductDetailsPageObject().apply {
+            assertProductDetailsVisible(productDetails, activityRule.activity)
         }
     }
 
