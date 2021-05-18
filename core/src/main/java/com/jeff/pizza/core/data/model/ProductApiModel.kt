@@ -18,7 +18,7 @@ fun List<ProductApiModel>.toDomain() = map { it.toDomain() }
 
 fun List<Product>.toApi() = map { it.toApi() }
 
-private fun ProductApiModel.toDomain() =
+fun ProductApiModel.toDomain() =
         Product(
                 id = id,
                 name = name,

@@ -35,8 +35,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:textColor="@color/text_light"
             app:layout_constraintBottom_toBottomOf="@+id/imageProductDetails"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,15 +49,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:ellipsize="end"
-            android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageProductDetails"
             tools:text="Esto es una prueba de texto largo para ver como funciona el layout de aquí" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/sizesProductDetails"
+            android:id="@+id/pricesProductDetails"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"

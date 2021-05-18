@@ -27,6 +27,10 @@ class ProductsResourceImpl
         }
     }
 
+    override fun getProduct(productId: Long): Product {
+        return dataSourceRepository.getProduct(productId)
+    }
+
     private fun getProductsFromApiAndUpdateDataSource() = apiRepository.getProducts().apply {
         either(onSuccess = { dataSourceRepository.insertProducts(it) })
     }

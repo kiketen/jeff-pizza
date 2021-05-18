@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jeff.pizza.core.presentation.extensions.loadImage
 import com.jeff.pizza.core.presentation.extensions.observe
@@ -40,6 +41,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
 
     private fun setLayout() {
         viewModel.getProductDetails(args.productId)
+        binding.pricesProductDetails.adapter = productPricesAdapter
     }
 
     private fun setListeners() {
@@ -57,15 +59,21 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private fun renderUIState(productDetailsUIState: ProductDetailsUIState) {
         when (productDetailsUIState) {
             is ProductDetailsUIState.ShowingContent -> showDetails(productDetailsUIState.details)
+            is ProductDetailsUIState.Back -> goBack()
         }
     }
 
     private fun showDetails(details: ProductDetailsUI) {
         with(binding) {
             imageProductDetails.loadImage(details.imageUrl)
+            titleProductDetails.text = details.name
             contentProductDetails.text = details.content
             productPricesAdapter.updateItems(details.prices)
         }
+    }
+
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 }
 

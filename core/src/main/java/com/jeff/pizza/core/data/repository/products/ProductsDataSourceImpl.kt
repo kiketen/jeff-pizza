@@ -14,13 +14,16 @@ class ProductsDataSourceImpl @Inject constructor(
 ): ProductsDataSource {
 
     override fun getProducts(): Either<Failure.NoData, List<Product>> {
-        productsDAO.getProducts()
         val products = productsDAO.getProducts().toDomain()
         return if (products.isEmpty()) {
             Either.Left(Failure.NoData)
         } else {
             Either.Right(products)
         }
+    }
+
+    override fun getProduct(productId: Long): Product {
+        return productsDAO.getProduct(productId).toDomain()
     }
 
     override fun insertProducts(products: List<Product>) {
