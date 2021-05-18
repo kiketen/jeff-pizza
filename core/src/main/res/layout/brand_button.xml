@@ -11,8 +11,7 @@
         android:layout_height="24dp"
         android:layout_gravity="center"
         android:indeterminateTint="@color/text_light"
-        android:visibility="gone"
-        tools:visibility="visible" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/buttonText"

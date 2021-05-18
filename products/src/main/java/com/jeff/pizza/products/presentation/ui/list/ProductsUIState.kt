@@ -1,4 +1,6 @@
-package com.jeff.pizza.products.presentation.model
+package com.jeff.pizza.products.presentation.ui.list
+
+import com.jeff.pizza.products.presentation.model.ProductUI
 
 
 sealed class ProductsUIState {

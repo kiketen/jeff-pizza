@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageProductDetails"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:foreground="@drawable/bkg_gradient_item"
+            android:scaleType="center"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/backButtonProductDetails"
+            style="@style/ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/titleProductDetails"
+            style="@style/Heading2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_light"
+            app:layout_constraintBottom_toBottomOf="@+id/imageProductDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Esto es una prueba de texto largo para ver como funciona el layout de aquí" />
+
+        <TextView
+            android:id="@+id/contentProductDetails"
+            style="@style/Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageProductDetails"
+            tools:text="Esto es una prueba de texto largo para ver como funciona el layout de aquí" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sizesProductDetails"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/contentProductDetails"
+            app:layout_constraintStart_toStartOf="@id/contentProductDetails"
+            app:layout_constraintTop_toBottomOf="@id/contentProductDetails"
+            tools:listitem="@layout/product_price_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

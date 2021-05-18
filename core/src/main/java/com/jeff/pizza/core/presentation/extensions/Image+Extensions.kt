@@ -19,12 +19,3 @@ fun ImageView.loadImage(
     )
 
 }
-
-fun ImageView.loadRoundedImage(imageUrl: String) {
-
-    ImageLoader(context).loadRoundedImage(
-            imageUrl = imageUrl,
-            view = this
-    )
-
-}
