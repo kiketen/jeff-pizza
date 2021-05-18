@@ -10,13 +10,7 @@ import com.schibsted.spain.barista.assertion.BaristaListAssertions
 import com.schibsted.spain.barista.interaction.BaristaListInteractions
 
 
-class ProductsPageObject {
-
-    fun waitForVisible(@IdRes id: Int) {
-        ConditionWatcher.waitForCondition(
-                WaitForVisibleViewInstruction(id)
-        )
-    }
+class ProductsPageObject: PageObject {
 
     fun assertProductsVisible(products: List<ProductUI>, context: Context) {
         products.forEachIndexed { index, product ->
@@ -25,5 +19,9 @@ class ProductsPageObject {
             BaristaListAssertions.assertDisplayedAtPosition(R.id.listProducts, index, R.id.priceProduct,
                     context.resources.getString(R.string.product_price_since, product.cheaperAmount.toString()))
         }
+    }
+
+    fun clickProduct(itemPosition: Int){
+        BaristaListInteractions.clickListItem(R.id.listProducts, itemPosition)
     }
 }

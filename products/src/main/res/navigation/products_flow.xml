@@ -7,9 +7,27 @@
 
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.jeff.pizza.products.presentation.ui.ProductsFragment"
+        android:name="com.jeff.pizza.products.presentation.ui.list.ProductsFragment"
         android:label="Products"
         tools:layout="@layout/products_fragment">
+        <action
+            android:id="@+id/products_to_product_details"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@anim/push_slide_in"
+            app:exitAnim="@anim/no_action"
+            app:popEnterAnim="@anim/no_action"
+            app:popExitAnim="@anim/pop_slide_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.jeff.pizza.products.presentation.ui.details.ProductDetailsFragment"
+        android:label="Product Details"
+        tools:layout="@layout/product_details_fragment">
+
+        <argument
+            android:name="productId"
+            app:argType="long" />
 
     </fragment>
 </navigation>

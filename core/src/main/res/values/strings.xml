@@ -5,6 +5,9 @@
     <string name="login_single">Single</string>
     <string name="login_title">What kind of user do you are?</string>
 
+    <string name="product_details_order">Order</string>
+    <string name="product_details_size">Size: %1$s</string>
+    <string name="product_details_amount">%1$s €</string>
     <string name="product_price_since">from %1$s €</string>
 
     <string name="retry">Retry</string>

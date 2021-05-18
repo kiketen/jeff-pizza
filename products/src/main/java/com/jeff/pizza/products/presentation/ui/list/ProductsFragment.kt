@@ -1,17 +1,17 @@
-package com.jeff.pizza.products.presentation.ui
+package com.jeff.pizza.products.presentation.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.jeff.pizza.core.presentation.extensions.gone
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.products.presentation.model.ProductUI
-import com.jeff.pizza.products.presentation.model.ProductsUIState
 import com.linhoapps.products.R
 import com.linhoapps.products.databinding.ProductsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +46,7 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
     private fun setViewModelObservers() {
         with(viewLifecycleOwner) {
             observe(viewModel.uiState, ::renderUIState)
+            observe(viewModel.navigation, ::handleNavigation)
         }
     }
 
@@ -71,6 +72,17 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
             }
             snack.show()
         }
+    }
+
+    private fun handleNavigation(productsNavigation: ProductsNavigation) {
+        when (productsNavigation) {
+            is ProductsNavigation.ProductDetails -> goToProductDetails(productsNavigation.productId)
+        }
+    }
+
+    private fun goToProductDetails(productId: Long) {
+        val action = ProductsFragmentDirections.productsToProductDetails(productId)
+        findNavController().navigate(action)
     }
 }
 

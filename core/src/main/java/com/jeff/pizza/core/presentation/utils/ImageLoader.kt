@@ -16,6 +16,7 @@ class ImageLoader(private val context: Context) {
     ) {
 
         Glide.with(context)
+                .asBitmap()
                 .load(imageUrl)
                 .placeholder(placeholder)
                 .error(error ?: placeholder)

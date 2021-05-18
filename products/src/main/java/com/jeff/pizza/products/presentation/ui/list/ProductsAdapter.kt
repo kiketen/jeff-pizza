@@ -1,4 +1,4 @@
-package com.jeff.pizza.products.presentation.ui
+package com.jeff.pizza.products.presentation.ui.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,12 +17,12 @@ class ProductsAdapter(
 
     inner class ViewHolder(binding: ProductItemBinding): RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         setBinding(ProductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ProductsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
         with(binding) {
             titleProduct.text = product.name
