@@ -10,8 +10,7 @@ import com.linhoapps.products.R
 import com.linhoapps.products.databinding.ProductPriceItemBinding
 
 class ProductPricesAdapter(
-        private val prices: MutableList<PriceUI>,
-        private val onOrderButtonClick: (String) -> Unit
+        private val prices: MutableList<PriceUI>
 ): BaseAdapter<ProductPricesAdapter.ViewHolder, ProductPriceItemBinding, PriceUI>(prices) {
 
     inner class ViewHolder(binding: ProductPriceItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -26,9 +25,6 @@ class ProductPricesAdapter(
         with(binding) {
             sizeProductDetails.text = sizeProductDetails.context.getString(R.string.product_details_size, price.size)
             amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount, price.amount.toString())
-            orderButtonProductDetails.setSensitiveClickListener {
-                onOrderButtonClick(price.size)
-            }
         }
     }
 

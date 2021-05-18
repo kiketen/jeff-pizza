@@ -28,8 +28,4 @@ class ProductDetailsViewModel @Inject constructor(
     fun onBackButtonClick() {
         _uiState.postValue(ProductDetailsUIState.Back)
     }
-
-    fun onOrderClick(productSize: String) {
-        //TODO add order button logic
-    }
 }

@@ -22,8 +22,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private val args: ProductDetailsFragmentArgs by navArgs()
 
     private var productPricesAdapter = ProductPricesAdapter(
-            prices = mutableListOf(),
-            onOrderButtonClick = { viewModel.onOrderClick(it) }
+            prices = mutableListOf()
     )
 
 
