@@ -5,6 +5,7 @@ import com.jeff.pizza.R
 import com.jeff.pizza.products.presentation.model.ProductDetailsUI
 import com.schibsted.spain.barista.assertion.BaristaListAssertions
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
+import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import com.schibsted.spain.barista.interaction.BaristaListInteractions
 
 
@@ -23,5 +24,9 @@ class ProductDetailsPageObject: PageObject {
                     context.getString(R.string.product_details_amount, price.amount)
             )
         }
+    }
+
+    fun clickBackButton() {
+        clickOn(R.id.backButtonProductDetails)
     }
 }

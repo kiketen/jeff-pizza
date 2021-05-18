@@ -56,14 +56,16 @@ class UserLoggedInTest: BaseFragmentTest() {
         }
         activityRule.launchActivity(null)
         SplashPageObject().assertVisible()
-        ProductsPageObject().apply {
+        val productsPageObject = ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
             assertProductsVisible(products, activityRule.activity)
             clickProduct(products.lastIndex)
         }
         ProductDetailsPageObject().apply {
             assertProductDetailsVisible(productDetails, activityRule.activity)
+            clickBackButton()
         }
+        productsPageObject.waitForVisible(R.id.listProducts)
     }
 
 }
