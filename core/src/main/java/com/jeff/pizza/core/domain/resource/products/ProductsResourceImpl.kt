@@ -1,10 +1,11 @@
 package com.jeff.pizza.core.domain.resource.products
 
-import com.jeff.pizza.core.domain.model.products.Product
-import com.jeff.pizza.core.domain.repository.products.ProductsApi
-import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
+import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.user.UserType
+import com.jeff.pizza.core.domain.repository.products.ProductsApi
+import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import javax.inject.Inject
 
 
@@ -14,24 +15,24 @@ class ProductsResourceImpl
         private val apiRepository: ProductsApi
 ): ProductsResource {
 
-    override fun getProducts(refresh: Boolean): Either<Failure, List<Product>> {
+    override fun getProducts(refresh: Boolean, userType: UserType): Either<Failure, List<Product>> {
         return if (refresh) {
-            getProductsFromApiAndUpdateDataSource()
+            getProductsFromApiAndUpdateDataSource(userType)
         } else {
-            val products = dataSourceRepository.getProducts()
+            val products = dataSourceRepository.getProducts(userType)
             if (products.isLeft) {
-                getProductsFromApiAndUpdateDataSource()
+                getProductsFromApiAndUpdateDataSource(userType)
             } else {
                 products
             }
         }
     }
 
-    override fun getProduct(productId: Long): Product {
-        return dataSourceRepository.getProduct(productId)
+    override fun getProduct(productId: Long, userType: UserType): Product {
+        return dataSourceRepository.getProduct(productId, userType)
     }
 
-    private fun getProductsFromApiAndUpdateDataSource() = apiRepository.getProducts().apply {
+    private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {
         either(onSuccess = { dataSourceRepository.insertProducts(it) })
     }
 

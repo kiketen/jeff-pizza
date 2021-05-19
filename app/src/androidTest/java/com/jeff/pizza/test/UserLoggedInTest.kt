@@ -59,7 +59,7 @@ class UserLoggedInTest: BaseFragmentTest() {
         val productsPageObject = ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
             assertProductsVisible(products, activityRule.activity)
-            clickProduct(products.lastIndex)
+            clickProduct(products.lastIndex - 1)
         }
         ProductDetailsPageObject().apply {
             assertProductDetailsVisible(productDetails, activityRule.activity)

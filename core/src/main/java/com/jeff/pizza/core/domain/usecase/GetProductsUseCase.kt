@@ -20,7 +20,7 @@ class GetProductsUseCaseImpl @Inject constructor(
 
     override suspend fun execute(refresh: Boolean): Either<Failure, List<Product>> {
         return withContext(dispatcher) {
-            productsResource.getProducts(refresh)
+            productsResource.getProducts(refresh, userResource.getUserType())
         }
     }
 }

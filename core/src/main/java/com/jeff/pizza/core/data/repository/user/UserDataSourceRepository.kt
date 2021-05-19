@@ -24,12 +24,12 @@ class UserDataSourceRepository
         }
     }
 
-    override fun getUserType(): Either<Failure.NoData, UserType> {
+    override fun getUserType(): UserType {
         val userType = sharedPreferences.getString(USER_TYPE, null)
         return when (userType) {
-            UserType.SINGLE.name -> Either.Right(UserType.SINGLE)
-            UserType.MARRIED.name -> Either.Right(UserType.MARRIED)
-            else -> Either.Left(Failure.NoData)
+            UserType.SINGLE.name -> UserType.SINGLE
+            UserType.MARRIED.name -> UserType.MARRIED
+            else -> UserType.UNKNOWN
         }
     }
 

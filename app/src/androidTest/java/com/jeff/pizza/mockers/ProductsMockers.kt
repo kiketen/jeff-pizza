@@ -23,12 +23,6 @@ val products = listOf(
                 cheaperAmount = 6.9F
         ),
         ProductUI(
-                id = 1003,
-                name = "Pizza Margarita",
-                imageUrl = "",
-                cheaperAmount = 11.5F
-        ),
-        ProductUI(
                 id = 1004,
                 name = "Pizza Borromea",
                 imageUrl = "",
@@ -39,6 +33,11 @@ val products = listOf(
                 name = "Pizza Espencat",
                 imageUrl = "",
                 cheaperAmount = 5.5F
+        ),
+        ProductUI(
+                id = 1003,
+                name = "Pizza Margarita",
+                imageUrl = "",
+                cheaperAmount = 11.5F
         )
-
 )

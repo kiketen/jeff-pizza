@@ -3,6 +3,7 @@ package com.jeff.pizza.core.data.model
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.user.UserType
 
 
 @Entity(primaryKeys = ["id"])
@@ -14,17 +15,18 @@ data class ProductApiModel(
         @SerializedName("prices") val prices: List<PriceApiModel>
 )
 
-fun List<ProductApiModel>.toDomain() = map { it.toDomain() }
+fun List<ProductApiModel>.toDomain(userType: UserType) = map { it.toDomain(userType) }
+        .sortedByDescending { it.prices.maxOf { price -> price.customerSatisfaction } }
 
 fun List<Product>.toApi() = map { it.toApi() }
 
-fun ProductApiModel.toDomain() =
+fun ProductApiModel.toDomain(userType: UserType) =
         Product(
                 id = id,
                 name = name,
                 content = content,
                 imageUrl = imageUrl,
-                prices = prices.toDomain()
+                prices = prices.toDomain(userType)
         )
 
 private fun Product.toApi() =

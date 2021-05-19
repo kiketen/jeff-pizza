@@ -18,7 +18,7 @@ class GetProductUseCaseImpl
 
     override suspend fun execute(productId: Long): Product {
         return withContext(dispatcher) {
-            productsResource.getProduct(productId)
+            productsResource.getProduct(productId, userResource.getUserType())
         }
     }
 }

@@ -5,6 +5,7 @@ import com.jeff.pizza.core.data.model.toDomain
 import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import javax.inject.Inject
 
@@ -13,8 +14,8 @@ class ProductsDataSourceImpl @Inject constructor(
         private val productsDAO: ProductsDAO
 ): ProductsDataSource {
 
-    override fun getProducts(): Either<Failure.NoData, List<Product>> {
-        val products = productsDAO.getProducts().toDomain()
+    override fun getProducts(userType: UserType): Either<Failure.NoData, List<Product>> {
+        val products = productsDAO.getProducts().toDomain(userType)
         return if (products.isEmpty()) {
             Either.Left(Failure.NoData)
         } else {
@@ -22,8 +23,8 @@ class ProductsDataSourceImpl @Inject constructor(
         }
     }
 
-    override fun getProduct(productId: Long): Product {
-        return productsDAO.getProduct(productId).toDomain()
+    override fun getProduct(productId: Long, userType: UserType): Product {
+        return productsDAO.getProduct(productId).toDomain(userType)
     }
 
     override fun insertProducts(products: List<Product>) {
