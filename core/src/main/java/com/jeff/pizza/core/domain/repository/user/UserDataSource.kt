@@ -7,5 +7,5 @@ import com.jeff.pizza.core.domain.model.base.Failure
 
 interface UserDataSource {
     fun setUserType(userType: UserType)
-    fun getUserType(): Either<Failure.NoData, UserType>
+    fun getUserType(): UserType
 }

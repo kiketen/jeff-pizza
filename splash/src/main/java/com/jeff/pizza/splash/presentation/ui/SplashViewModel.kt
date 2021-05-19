@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.core.domain.usecase.DelayUseCase
 import com.jeff.pizza.core.domain.usecase.GetProductsUseCase
 import com.jeff.pizza.navigation.NavigationFlow
@@ -32,14 +33,10 @@ class SplashViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getUserTypeUseCase.execute().either(
-                    onSuccess = {
-                        getProducts(SPLASH_SCREEN_DELAY_IN_MILLISECONDS)
-                    },
-                    onError = {
-                        navigateToLoginAfterDelay()
-                    }
-            )
+            when (getUserTypeUseCase.execute()) {
+                UserType.UNKNOWN -> navigateToLoginAfterDelay()
+                else -> getProducts(SPLASH_SCREEN_DELAY_IN_MILLISECONDS)
+            }
         }
     }
 

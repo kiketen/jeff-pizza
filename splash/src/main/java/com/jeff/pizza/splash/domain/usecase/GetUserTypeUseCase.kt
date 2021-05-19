@@ -9,14 +9,14 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface GetUserTypeUseCase {
-    suspend fun execute(): Either<Failure, UserType>
+    suspend fun execute(): UserType
 }
 
 class GetUserTypeUseCaseImpl
 @Inject constructor(private val userResource: UserResource,
                     private val dispatcher: CoroutineDispatcher): GetUserTypeUseCase {
 
-    override suspend fun execute(): Either<Failure, UserType> {
+    override suspend fun execute(): UserType {
         return withContext(dispatcher) {
             userResource.getUserType()
         }
