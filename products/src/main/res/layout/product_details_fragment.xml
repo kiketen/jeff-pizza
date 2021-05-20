@@ -27,6 +27,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_back" />
 
+        <include
+            android:id="@+id/shoppingCartProductDetails"
+            layout="@layout/shopping_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/titleProductDetails"
             style="@style/Heading2"
