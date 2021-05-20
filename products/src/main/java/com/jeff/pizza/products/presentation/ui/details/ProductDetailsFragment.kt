@@ -23,8 +23,8 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
 
     private var productPricesAdapter = ProductSizesAdapter(
             sizes = mutableListOf(),
-            onAddClick = { size -> viewModel.onAddClick(size) },
-            onRemoveClick = { size -> viewModel.onRemoveClick(size) }
+            onAddClick = { size -> viewModel.onAddClick(args.productId, size) },
+            onRemoveClick = { size -> viewModel.onRemoveClick(args.productId, size) }
     )
 
 

@@ -10,4 +10,5 @@ interface ProductsDataSource {
     fun getProducts(userType: UserType): Either<Failure.NoData, List<Product>>
     fun getProduct(productId: Long, userType: UserType): Product
     fun insertProducts(products: List<Product>)
+    fun updateProduct(productIncreased: Product)
 }

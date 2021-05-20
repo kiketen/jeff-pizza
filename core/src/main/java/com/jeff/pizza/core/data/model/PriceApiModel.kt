@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import com.jeff.pizza.core.domain.model.products.Size
 import com.jeff.pizza.core.domain.model.user.UserType
 
-
 class PriceApiModel(
         @SerializedName("size") val size: String,
         @SerializedName("price") val amount: Float,

@@ -30,4 +30,8 @@ class ProductsDataSourceImpl @Inject constructor(
     override fun insertProducts(products: List<Product>) {
         productsDAO.insertProducts(products.toApi())
     }
+
+    override fun updateProduct(productIncreased: Product) {
+        productsDAO.updateProduct(productIncreased.toApi())
+    }
 }

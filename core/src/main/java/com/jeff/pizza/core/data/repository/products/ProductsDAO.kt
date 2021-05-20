@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.jeff.pizza.core.data.model.ProductApiModel
-import com.jeff.pizza.core.domain.model.products.Product
 
 @Dao
 interface ProductsDAO {
@@ -18,4 +18,7 @@ interface ProductsDAO {
 
     @Query("SELECT * FROM ProductApiModel WHERE id = :productId")
     fun getProduct(productId: Long): ProductApiModel
+
+    @Update
+    fun updateProduct(productApiModel: ProductApiModel)
 }

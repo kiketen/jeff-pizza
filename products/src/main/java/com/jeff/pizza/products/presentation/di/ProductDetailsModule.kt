@@ -2,8 +2,12 @@ package com.jeff.pizza.products.presentation.di
 
 import com.jeff.pizza.core.domain.resource.products.ProductsResource
 import com.jeff.pizza.core.domain.resource.user.UserResource
+import com.jeff.pizza.products.domain.usecase.AddProductUseCase
+import com.jeff.pizza.products.domain.usecase.AddProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCaseImpl
+import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
+import com.jeff.pizza.products.domain.usecase.RemoveProductUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,4 +24,16 @@ object ProductDetailsModule {
             productsResource: ProductsResource,
             dispatcher: CoroutineDispatcher
     ): GetProductUseCase = GetProductUseCaseImpl(resource, productsResource, dispatcher)
+
+    @Provides
+    fun providesAddProductUseCase(
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): AddProductUseCase = AddProductUseCaseImpl(productsResource, dispatcher)
+
+    @Provides
+    fun providesRemoveProductUseCase(
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): RemoveProductUseCase = RemoveProductUseCaseImpl(productsResource, dispatcher)
 }

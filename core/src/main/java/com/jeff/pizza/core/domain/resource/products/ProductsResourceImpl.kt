@@ -32,6 +32,32 @@ class ProductsResourceImpl
         return dataSourceRepository.getProduct(productId, userType)
     }
 
+    override fun addProduct(productId: Long, size: String) {
+        val product = dataSourceRepository.getProduct(productId, UserType.UNKNOWN)
+        val sizes = product.sizes.map {
+            if (it.size == size) {
+                it.copy(count = it.count + 1)
+            } else {
+                it
+            }
+        }
+        val productIncreased = product.copy(sizes = sizes)
+        dataSourceRepository.updateProduct(productIncreased)
+    }
+
+    override fun removeProduct(productId: Long, size: String) {
+        val product = dataSourceRepository.getProduct(productId, UserType.UNKNOWN)
+        val sizes = product.sizes.map {
+            if (it.size == size && it.count > 0) {
+                it.copy(count = it.count - 1)
+            } else {
+                it
+            }
+        }
+        val productIncreased = product.copy(sizes = sizes)
+        dataSourceRepository.updateProduct(productIncreased)
+    }
+
     private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {
         either(onSuccess = { dataSourceRepository.insertProducts(it) })
     }
