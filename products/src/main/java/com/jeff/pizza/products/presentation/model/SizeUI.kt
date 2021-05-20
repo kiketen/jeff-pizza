@@ -1,7 +1,8 @@
 package com.jeff.pizza.products.presentation.model
 
 
-data class PriceUI(
+data class SizeUI(
         val size: String,
-        val amount: Float
+        val amount: Float,
+        val count: Int
 )

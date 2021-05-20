@@ -15,7 +15,7 @@ class ProductDetailsPageObject: PageObject {
         waitForVisible(R.id.imageProductDetails)
         assertDisplayed(R.id.titleProductDetails, productDetails.name)
         assertDisplayed(R.id.contentProductDetails, productDetails.content)
-        productDetails.prices.forEachIndexed { index, price ->
+        productDetails.sizes.forEachIndexed { index, price ->
             BaristaListInteractions.scrollListToPosition(R.id.pricesProductDetails, index)
             BaristaListAssertions.assertDisplayedAtPosition(R.id.pricesProductDetails, index, R.id.sizeProductDetails,
                     context.getString(R.string.product_details_size, price.size)

@@ -21,8 +21,10 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private val viewModel: ProductDetailsViewModel by viewModels()
     private val args: ProductDetailsFragmentArgs by navArgs()
 
-    private var productPricesAdapter = ProductPricesAdapter(
-            prices = mutableListOf()
+    private var productPricesAdapter = ProductSizesAdapter(
+            sizes = mutableListOf(),
+            onAddClick = { size -> viewModel.onAddClick(size) },
+            onRemoveClick = { size -> viewModel.onRemoveClick(size) }
     )
 
 
@@ -67,7 +69,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
             imageProductDetails.loadImage(details.imageUrl)
             titleProductDetails.text = details.name
             contentProductDetails.text = details.content
-            productPricesAdapter.updateItems(details.prices)
+            productPricesAdapter.updateItems(details.sizes)
         }
     }
 
@@ -75,5 +77,3 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
         findNavController().popBackStack()
     }
 }
-
-

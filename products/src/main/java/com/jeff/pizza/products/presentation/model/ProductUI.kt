@@ -1,6 +1,6 @@
 package com.jeff.pizza.products.presentation.model
 
-import com.jeff.pizza.core.domain.model.products.Price
+import com.jeff.pizza.core.domain.model.products.Size
 import com.jeff.pizza.core.domain.model.products.Product
 
 
@@ -18,7 +18,7 @@ private fun Product.toUI() =
                 id = id,
                 name = name,
                 imageUrl = imageUrl,
-                cheaperAmount = prices.getCheaperAmount()
+                cheaperAmount = sizes.getCheaperAmount()
         )
 
-private fun List<Price>.getCheaperAmount() = minByOrNull { it.amount }?.amount
+private fun List<Size>.getCheaperAmount() = minByOrNull { it.amount }?.amount

@@ -28,4 +28,12 @@ class ProductDetailsViewModel @Inject constructor(
     fun onBackButtonClick() {
         _uiState.postValue(ProductDetailsUIState.Back)
     }
+
+    fun onAddClick(size: String) {
+
+    }
+
+    fun onRemoveClick(size: String) {
+
+    }
 }
