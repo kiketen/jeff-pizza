@@ -1,4 +1,4 @@
-package com.jeff.pizza.products.presentation.ui.list
+package com.jeff.pizza.products.presentation.model
 
 
 sealed class ProductsNavigation {

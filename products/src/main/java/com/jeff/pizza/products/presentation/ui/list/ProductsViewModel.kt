@@ -6,8 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeff.pizza.core.domain.usecase.GetProductsUseCase
 import com.jeff.pizza.core.presentation.ui.SingleLiveEvent
+import com.jeff.pizza.navigation.NavigationFlow
+import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartIsEmptyUseCase
+import com.jeff.pizza.products.presentation.model.ProductsError
+import com.jeff.pizza.products.presentation.model.ProductsNavigation
+import com.jeff.pizza.products.presentation.model.ProductsUIState
 import com.jeff.pizza.products.presentation.model.toUI
+import com.linhoapps.products.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,15 +21,19 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
         private val getProductsUseCase: GetProductsUseCase,
-        private val getIfShoppingCartIsEmptyUseCase: GetIfShoppingCartIsEmptyUseCase
+        private val getIfShoppingCartIsEmptyUseCase: GetIfShoppingCartIsEmptyUseCase,
+        private val navigator: Navigator
 ): ViewModel() {
 
     private val _uiState = MutableLiveData<ProductsUIState>()
     private val _navigation = SingleLiveEvent<ProductsNavigation>()
+    private val _showShoppingCartNotification = MutableLiveData<Boolean>()
+    private val _error = SingleLiveEvent<ProductsError>()
+
     val uiState: LiveData<ProductsUIState> = _uiState
     val navigation: LiveData<ProductsNavigation> = _navigation
-    private val _showShoppingCartNotification = MutableLiveData<Boolean>()
     val showShoppingCartNotification: LiveData<Boolean> = _showShoppingCartNotification
+    val error: LiveData<ProductsError> = _error
 
     init {
         getProducts(refresh = false)
@@ -43,6 +53,14 @@ class ProductsViewModel @Inject constructor(
         _navigation.postValue(ProductsNavigation.ProductDetails(productId))
     }
 
+    fun onShoppingCartClick(visible: Boolean) {
+        if (visible) {
+            navigator.navigateToFlow(NavigationFlow.ShoppingCart)
+        } else {
+            _error.postValue(ProductsError.ErrorShort(R.string.products_shopping_cart_error))
+        }
+    }
+
     private fun getProducts(refresh: Boolean) {
         _uiState.postValue(ProductsUIState.Loading)
         viewModelScope.launch {
@@ -51,7 +69,7 @@ class ProductsViewModel @Inject constructor(
                         _uiState.postValue(ProductsUIState.ShowingContent(it.toUI()))
                     },
                     onError = {
-                        _uiState.postValue(ProductsUIState.Error)
+                        _error.postValue(ProductsError.ErrorIndefinite(R.string.unexpected_error))
                     }
             )
         }

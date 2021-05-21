@@ -2,9 +2,9 @@ package com.jeff.pizza.core.presentation.ui
 
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T: RecyclerView.ViewHolder, R, S>(
-        private val items: MutableList<S>
-): RecyclerView.Adapter<T>() {
+abstract class BaseAdapter<T : RecyclerView.ViewHolder, R, S>(
+    private val items: MutableList<S>
+) : RecyclerView.Adapter<T>() {
 
     private var _binding: R? = null
     protected val binding: R

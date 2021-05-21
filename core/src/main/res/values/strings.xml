@@ -11,6 +11,8 @@
     <string name="product_details_amount">%1$s €</string>
     <string name="product_price_since">from %1$s €</string>
 
+    <string name="products_shopping_cart_error">The shopping cart is empty</string>
+
     <string name="retry">Retry</string>
     <string name="unexpected_error">Oops! Error getting data</string>
 </resources>

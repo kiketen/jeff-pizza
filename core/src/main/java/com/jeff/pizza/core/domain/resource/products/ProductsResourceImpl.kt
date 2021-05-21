@@ -32,7 +32,7 @@ class ProductsResourceImpl
         return dataSourceRepository.getProduct(productId, userType)
     }
 
-    override fun addProduct(productId: Long, size: String) {
+    override fun addProduct(productId: Long, size: String): Product {
         val product = dataSourceRepository.getProduct(productId)
         val sizes = product.prices.map {
             if (it.size == size) {
@@ -43,9 +43,10 @@ class ProductsResourceImpl
         }
         val productIncreased = product.copy(prices = sizes)
         dataSourceRepository.updateProduct(productIncreased)
+        return productIncreased
     }
 
-    override fun removeProduct(productId: Long, size: String) {
+    override fun removeProduct(productId: Long, size: String): Product {
         val product = dataSourceRepository.getProduct(productId)
         val sizes = product.prices.map {
             if (it.size == size && it.count > 0) {
@@ -54,8 +55,9 @@ class ProductsResourceImpl
                 it
             }
         }
-        val productIncreased = product.copy(prices = sizes)
-        dataSourceRepository.updateProduct(productIncreased)
+        val productDecreased = product.copy(prices = sizes)
+        dataSourceRepository.updateProduct(productDecreased)
+        return productDecreased
     }
 
     private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {

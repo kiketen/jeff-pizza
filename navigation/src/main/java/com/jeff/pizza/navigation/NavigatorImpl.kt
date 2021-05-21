@@ -13,6 +13,7 @@ class NavigatorImpl @Inject constructor(): Navigator {
         when (navigationFlow) {
             NavigationFlow.Login -> navController?.navigate(MainNavGraphDirections.actionGlobalLoginFlow())
             NavigationFlow.Products -> navController?.navigate(MainNavGraphDirections.actionGlobalProductsFlow())
+            NavigationFlow.ShoppingCart -> navController?.navigate(MainNavGraphDirections.actionGlobalShoppingCartFlow())
         }
     }
 }

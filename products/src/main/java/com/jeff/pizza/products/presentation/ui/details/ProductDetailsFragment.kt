@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
+import com.jeff.pizza.core.presentation.extensions.isVisible
 import com.jeff.pizza.core.presentation.extensions.loadImage
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.switchVisibilityAnimated
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.jeff.pizza.products.presentation.model.ProductDetailsUI
+import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
 import com.linhoapps.products.databinding.ProductDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,8 +51,17 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     }
 
     private fun setListeners() {
-        binding.backButtonProductDetails.setSensitiveClickListener {
-            viewModel.onBackButtonClick()
+        with(binding) {
+            backButtonProductDetails.setSensitiveClickListener {
+                viewModel.onBackButtonClick()
+            }
+            shoppingCartProductDetails.cartButton.setSensitiveClickListener {
+                viewModel.onShoppingCartClick(shoppingCartProductDetails.cartNotification.isVisible())
+            }
+            confirmButtonProductDetails.setSensitiveClickListener {
+                viewModel.onConfirmButtonClick()
+            }
+
         }
     }
 
@@ -56,6 +69,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
         with(viewLifecycleOwner) {
             observe(viewModel.uiState, ::renderUIState)
             observe(viewModel.shoppingCartWithProducts, ::handleShoppingCartWithProducts)
+            observe(viewModel.error, ::showError)
         }
     }
 
@@ -83,6 +97,12 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
         with(binding) {
             shoppingCartProductDetails.cartNotification.switchVisibilityAnimated(visible)
             confirmButtonProductDetails.switchVisibilityAnimated(visible)
+        }
+    }
+
+    private fun showError(@StringRes textId: Int) {
+        with(binding) {
+            Snackbar.make(root, textId, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

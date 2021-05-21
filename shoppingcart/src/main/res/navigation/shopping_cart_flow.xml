@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shopping_cart_flow"
+    app:startDestination="@id/shoppingCartFragment">
+
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.jeff.pizza.cart.ui.ShoppingCartFragment"
+        android:label="ShoppingCart"
+        tools:layout="@layout/shopping_cart_fragment" />
+
+</navigation>
