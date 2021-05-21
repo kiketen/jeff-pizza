@@ -1,6 +1,5 @@
 package com.jeff.pizza.test
 
-import android.content.SharedPreferences
 import com.jeff.pizza.R
 import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.core.data.repository.user.UserDataSourceRepository
@@ -33,9 +32,6 @@ class UserLoggedInTest: BaseFragmentTest() {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var sharedPreferences: SharedPreferences
-
-    @Inject
     lateinit var userDataSource: UserDataSourceRepository
 
     @Before
@@ -45,7 +41,7 @@ class UserLoggedInTest: BaseFragmentTest() {
     }
 
     @Test
-    fun givenLoggedInUserTypeWhenClickOnProductThenShowProductDetails() {
+    fun givenSingleUserWhenStartsAppThenAddProductsToTheShoppingCart() {
         userDataSource.setUserType(UserType.SINGLE)
         mockServer.dispatcher = object: Dispatcher() {
             override fun dispatch(request: RecordedRequest): MockResponse {
@@ -63,9 +59,22 @@ class UserLoggedInTest: BaseFragmentTest() {
         }
         ProductDetailsPageObject().apply {
             assertProductDetailsVisible(productDetails, activityRule.activity)
+            assertCartShoppingEmpty()
+            val positionClicked = 1
+
+            clickAddButton(positionClicked)
+            assertProductAdded(positionClicked)
+
+            clickRemoveButton(positionClicked)
+            assertProductDetailsVisible(productDetails, activityRule.activity)
+
+            clickAddButton(positionClicked)
             clickBackButton()
         }
-        productsPageObject.waitForVisible(R.id.listProducts)
+        productsPageObject.apply {
+            waitForVisible(R.id.listProducts)
+            assertCartShoppingWithProducts()
+        }
     }
 
 }

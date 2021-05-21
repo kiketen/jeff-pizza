@@ -6,15 +6,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jeff.pizza.core.presentation.extensions.invisible
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
-import com.jeff.pizza.products.presentation.model.SizeUI
+import com.jeff.pizza.products.presentation.model.PriceUI
 import com.linhoapps.products.R
 import com.linhoapps.products.databinding.ProductPriceItemBinding
 
-class ProductSizesAdapter(
-        private val sizes: MutableList<SizeUI>,
+class ProductPricesAdapter(
+        private val prices: MutableList<PriceUI>,
         private val onAddClick: (String) -> Unit,
         private val onRemoveClick: (String) -> Unit
-): BaseAdapter<ProductSizesAdapter.ViewHolder, ProductPriceItemBinding, SizeUI>(sizes) {
+): BaseAdapter<ProductPricesAdapter.ViewHolder, ProductPriceItemBinding, PriceUI>(prices) {
 
     inner class ViewHolder(binding: ProductPriceItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -24,17 +24,17 @@ class ProductSizesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val productSize = sizes[position]
+        val productPrice = prices[position]
         with(binding) {
-            sizeProductDetails.text = sizeProductDetails.context.getString(R.string.product_details_size, productSize.size)
-            amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount, productSize.amount.toString())
-            productsNumber.text = productSize.count.toString()
-            handleRemoveButtonVisibility(productSize.count)
+            sizeProductDetails.text = sizeProductDetails.context.getString(R.string.product_details_size, productPrice.size)
+            amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount, productPrice.amount.toString())
+            productsNumber.text = productPrice.count.toString()
+            handleRemoveButtonVisibility(productPrice.count)
             addProductButton.setOnClickListener {
-                addProduct(productSize)
+                addProduct(productPrice)
             }
             removeProductButton.setOnClickListener {
-                removeProduct(productSize)
+                removeProduct(productPrice)
             }
         }
     }
@@ -46,16 +46,16 @@ class ProductSizesAdapter(
         }
     }
 
-    private fun ProductPriceItemBinding.addProduct(productSize: SizeUI) {
+    private fun ProductPriceItemBinding.addProduct(productPrice: PriceUI) {
         val increasedProductNumber = productsNumber.text.toString().toInt() + 1
         updateProductsNumberText(increasedProductNumber)
-        onAddClick(productSize.size)
+        onAddClick(productPrice.size)
     }
 
-    private fun ProductPriceItemBinding.removeProduct(productSize: SizeUI) {
+    private fun ProductPriceItemBinding.removeProduct(productPrice: PriceUI) {
         val decreasedProductNumber = productsNumber.text.toString().toInt() - 1
         updateProductsNumberText(decreasedProductNumber)
-        onRemoveClick(productSize.size)
+        onRemoveClick(productPrice.size)
     }
 
     private fun ProductPriceItemBinding.updateProductsNumberText(increasedProductNumber: Int) {

@@ -1,7 +1,7 @@
 package com.jeff.pizza.core.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.jeff.pizza.core.domain.model.products.Size
+import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.user.UserType
 
 class PriceApiModel(
@@ -12,10 +12,10 @@ class PriceApiModel(
 
 fun List<PriceApiModel>.toDomain(userType: UserType) = map { it.toDomain(userType) }.sortedByDescending { it.customerSatisfaction }
 
-fun List<Size>.toApi() = map { it.toApi() }
+fun List<Price>.toApi() = map { it.toApi() }
 
 private fun PriceApiModel.toDomain(userType: UserType) =
-        Size(
+        Price(
                 size = size,
                 amount = amount,
                 customerSatisfaction = getCustomerSatisfaction(userType, ProductSize.fromStringName(size)),
@@ -48,7 +48,7 @@ private fun getSingleSatisfaction(size: ProductSize) =
         }
 
 
-private fun Size.toApi() =
+private fun Price.toApi() =
         PriceApiModel(
                 size = size,
                 amount = amount,

@@ -1,7 +1,7 @@
 package com.jeff.pizza.products.presentation.model
 
 import com.jeff.pizza.core.domain.model.products.Product
-import com.jeff.pizza.core.domain.model.products.Size
+import com.jeff.pizza.core.domain.model.products.Price
 
 
 data class ProductDetailsUI(
@@ -9,7 +9,7 @@ data class ProductDetailsUI(
         val name: String,
         val content: String,
         val imageUrl: String,
-        val sizes: List<SizeUI>
+        val prices: List<PriceUI>
 )
 
 fun Product.toDetailsUI() =
@@ -18,13 +18,13 @@ fun Product.toDetailsUI() =
                 name = name,
                 content = content,
                 imageUrl = imageUrl,
-                sizes = sizes.toUI()
+                prices = prices.toUI()
         )
 
-private fun List<Size>.toUI() = map { it.toUI() }
+private fun List<Price>.toUI() = map { it.toUI() }
 
-private fun Size.toUI() =
-        SizeUI(
+private fun Price.toUI() =
+        PriceUI(
                 size = size,
                 amount = amount,
                 count = count

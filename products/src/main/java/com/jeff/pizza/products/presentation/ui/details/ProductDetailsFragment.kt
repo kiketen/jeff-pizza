@@ -22,8 +22,8 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private val viewModel: ProductDetailsViewModel by viewModels()
     private val args: ProductDetailsFragmentArgs by navArgs()
 
-    private var productPricesAdapter = ProductSizesAdapter(
-            sizes = mutableListOf(),
+    private var productPricesAdapter = ProductPricesAdapter(
+            prices = mutableListOf(),
             onAddClick = { size -> viewModel.onAddClick(args.productId, size) },
             onRemoveClick = { size -> viewModel.onRemoveClick(args.productId, size) }
     )
@@ -71,7 +71,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
             imageProductDetails.loadImage(details.imageUrl)
             titleProductDetails.text = details.name
             contentProductDetails.text = details.content
-            productPricesAdapter.updateItems(details.sizes)
+            productPricesAdapter.updateItems(details.prices)
         }
     }
 

@@ -16,7 +16,7 @@ data class ProductApiModel(
 )
 
 fun List<ProductApiModel>.toDomain(userType: UserType) = map { it.toDomain(userType) }
-        .sortedByDescending { it.sizes.maxOf { price -> price.customerSatisfaction } }
+        .sortedByDescending { it.prices.maxOf { price -> price.customerSatisfaction } }
 
 fun List<Product>.toApi() = map { it.toApi() }
 
@@ -26,7 +26,7 @@ fun ProductApiModel.toDomain(userType: UserType) =
                 name = name,
                 content = content,
                 imageUrl = imageUrl,
-                sizes = prices.toDomain(userType)
+                prices = prices.toDomain(userType)
         )
 
 fun Product.toApi() =
@@ -35,5 +35,5 @@ fun Product.toApi() =
                 name = name,
                 content = content,
                 imageUrl = imageUrl,
-                prices = sizes.toApi()
+                prices = prices.toApi()
         )
