@@ -7,8 +7,8 @@ import com.jeff.pizza.core.domain.model.user.UserType
 
 
 interface ProductsDataSource {
-    fun getProducts(userType: UserType): Either<Failure.NoData, List<Product>>
-    fun getProduct(productId: Long, userType: UserType): Product
+    fun getProducts(userType: UserType = UserType.UNKNOWN): Either<Failure.NoData, List<Product>>
+    fun getProduct(productId: Long, userType: UserType = UserType.UNKNOWN): Product
     fun insertProducts(products: List<Product>)
     fun updateProduct(productIncreased: Product)
 }

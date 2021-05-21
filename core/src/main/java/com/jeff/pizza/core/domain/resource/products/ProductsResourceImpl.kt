@@ -33,7 +33,7 @@ class ProductsResourceImpl
     }
 
     override fun addProduct(productId: Long, size: String) {
-        val product = dataSourceRepository.getProduct(productId, UserType.UNKNOWN)
+        val product = dataSourceRepository.getProduct(productId)
         val sizes = product.sizes.map {
             if (it.size == size) {
                 it.copy(count = it.count + 1)
@@ -46,7 +46,7 @@ class ProductsResourceImpl
     }
 
     override fun removeProduct(productId: Long, size: String) {
-        val product = dataSourceRepository.getProduct(productId, UserType.UNKNOWN)
+        val product = dataSourceRepository.getProduct(productId)
         val sizes = product.sizes.map {
             if (it.size == size && it.count > 0) {
                 it.copy(count = it.count - 1)

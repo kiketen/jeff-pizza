@@ -4,6 +4,8 @@ import com.jeff.pizza.core.domain.resource.products.ProductsResource
 import com.jeff.pizza.core.domain.resource.user.UserResource
 import com.jeff.pizza.products.domain.usecase.AddProductUseCase
 import com.jeff.pizza.products.domain.usecase.AddProductUseCaseImpl
+import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartIsEmptyUseCase
+import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartIsEmptyUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
@@ -36,4 +38,10 @@ object ProductDetailsModule {
             productsResource: ProductsResource,
             dispatcher: CoroutineDispatcher
     ): RemoveProductUseCase = RemoveProductUseCaseImpl(productsResource, dispatcher)
+
+    @Provides
+    fun providesGetIfShoppingCartIsEmptyUseCase(
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): GetIfShoppingCartIsEmptyUseCase = GetIfShoppingCartIsEmptyUseCaseImpl(productsResource, dispatcher)
 }

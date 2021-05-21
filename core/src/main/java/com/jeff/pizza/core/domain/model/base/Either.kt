@@ -8,8 +8,7 @@ sealed class Either<out L, out R> {
     val isRight get() = this is Right<R>
     val isLeft get() = this is Left<L>
 
-    fun <L> left(a: L) = Left(a)
-    fun <R> right(b: R) = Right(b)
+    val rightValue get() = (this as Right).b
 
     fun either(onError: (L) -> Any = {}, onSuccess: (R) -> Any = {}): Any =
             when (this) {
