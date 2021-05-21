@@ -13,6 +13,8 @@
 
     <string name="products_shopping_cart_error">The shopping cart is empty</string>
 
+    <string name="shopping_cart_title">Order Summary</string>
+
     <string name="retry">Retry</string>
     <string name="unexpected_error">Oops! Error getting data</string>
 </resources>

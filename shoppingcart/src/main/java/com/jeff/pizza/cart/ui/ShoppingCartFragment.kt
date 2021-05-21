@@ -12,15 +12,19 @@ import com.linhoapps.cart.databinding.ShoppingCartFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
+class ShoppingCartFragment : BaseFragment<ShoppingCartFragmentBinding>() {
 
     private val viewModel: ShoppingCartViewModel by viewModels()
 
     private var productsAdapter = ShoppingCartProductsAdapter(
-            products = mutableListOf()
+        products = mutableListOf()
     )
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         setBinding(ShoppingCartFragmentBinding.inflate(inflater, container, false))
         return binding.root
     }

@@ -49,7 +49,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/text_light"
+                android:textColor="@color/textLight"
                 app:layout_constraintBottom_toBottomOf="@+id/imageProductDetails"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
