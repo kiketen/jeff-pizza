@@ -1,7 +1,7 @@
 package com.jeff.pizza.products.presentation.model
 
-import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.products.Price
 
 
 data class ProductDetailsUI(
@@ -26,5 +26,6 @@ private fun List<Price>.toUI() = map { it.toUI() }
 private fun Price.toUI() =
         PriceUI(
                 size = size,
-                amount = amount
+                amount = amount,
+                count = count
         )

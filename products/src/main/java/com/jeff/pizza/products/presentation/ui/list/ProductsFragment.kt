@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.jeff.pizza.core.presentation.extensions.gone
 import com.jeff.pizza.core.presentation.extensions.observe
+import com.jeff.pizza.core.presentation.extensions.switchVisibilityAnimated
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.products.presentation.model.ProductUI
@@ -35,6 +36,7 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getShoppingCartNotificationVisibility()
         setLayout()
         setViewModelObservers()
     }
@@ -47,6 +49,7 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
         with(viewLifecycleOwner) {
             observe(viewModel.uiState, ::renderUIState)
             observe(viewModel.navigation, ::handleNavigation)
+            observe(viewModel.showShoppingCartNotification, ::handleShoppingCartNotification)
         }
     }
 
@@ -83,6 +86,10 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
     private fun goToProductDetails(productId: Long) {
         val action = ProductsFragmentDirections.productsToProductDetails(productId)
         findNavController().navigate(action)
+    }
+
+    private fun handleShoppingCartNotification(showNotification: Boolean) {
+        binding.shoppingCartProducts.cartNotification.switchVisibilityAnimated(showNotification)
     }
 }
 

@@ -29,7 +29,7 @@ fun ProductApiModel.toDomain(userType: UserType) =
                 prices = prices.toDomain(userType)
         )
 
-private fun Product.toApi() =
+fun Product.toApi() =
         ProductApiModel(
                 id = id,
                 name = name,

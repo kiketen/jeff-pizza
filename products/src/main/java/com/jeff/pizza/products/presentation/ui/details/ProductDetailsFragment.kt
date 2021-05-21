@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jeff.pizza.core.presentation.extensions.loadImage
 import com.jeff.pizza.core.presentation.extensions.observe
+import com.jeff.pizza.core.presentation.extensions.switchVisibilityAnimated
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.jeff.pizza.products.presentation.model.ProductDetailsUI
@@ -22,7 +23,9 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private val args: ProductDetailsFragmentArgs by navArgs()
 
     private var productPricesAdapter = ProductPricesAdapter(
-            prices = mutableListOf()
+            prices = mutableListOf(),
+            onAddClick = { size -> viewModel.onAddClick(args.productId, size) },
+            onRemoveClick = { size -> viewModel.onRemoveClick(args.productId, size) }
     )
 
 
@@ -52,6 +55,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private fun setViewModelObservers() {
         with(viewLifecycleOwner) {
             observe(viewModel.uiState, ::renderUIState)
+            observe(viewModel.shoppingCartWithProducts, ::handleShoppingCartWithProducts)
         }
     }
 
@@ -74,6 +78,11 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
     private fun goBack() {
         findNavController().popBackStack()
     }
+
+    private fun handleShoppingCartWithProducts(visible: Boolean) {
+        with(binding) {
+            shoppingCartProductDetails.cartNotification.switchVisibilityAnimated(visible)
+            confirmButtonProductDetails.switchVisibilityAnimated(visible)
+        }
+    }
 }
-
-

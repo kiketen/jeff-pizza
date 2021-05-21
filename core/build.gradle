@@ -66,4 +66,6 @@ dependencies {
     implementation networkingDependencies.values()
     api databaseDependencies.values()
     kapt databaseAnnotationDependencies.values()
+
+    testImplementation testDependencies.values()
 }

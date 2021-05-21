@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.user.UserType
 
-
 class PriceApiModel(
         @SerializedName("size") val size: String,
-        @SerializedName("price") val amount: Float
+        @SerializedName("price") val amount: Float,
+        @SerializedName("count") val count: Int
 )
 
 fun List<PriceApiModel>.toDomain(userType: UserType) = map { it.toDomain(userType) }.sortedByDescending { it.customerSatisfaction }
@@ -18,7 +18,8 @@ private fun PriceApiModel.toDomain(userType: UserType) =
         Price(
                 size = size,
                 amount = amount,
-                customerSatisfaction = getCustomerSatisfaction(userType, ProductSize.fromStringName(size))
+                customerSatisfaction = getCustomerSatisfaction(userType, ProductSize.fromStringName(size)),
+                count = count
         )
 
 private fun getCustomerSatisfaction(userType: UserType, size: ProductSize) =
@@ -50,5 +51,6 @@ private fun getSingleSatisfaction(size: ProductSize) =
 private fun Price.toApi() =
         PriceApiModel(
                 size = size,
-                amount = amount
+                amount = amount,
+                count = count
         )
