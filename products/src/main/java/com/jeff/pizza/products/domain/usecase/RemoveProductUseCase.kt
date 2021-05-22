@@ -16,7 +16,7 @@ class RemoveProductUseCaseImpl
 
     override suspend fun execute(productId: Long, size: String): Product {
         return withContext(dispatcher) {
-            productsResource.removeProduct(productId, size)
+            productsResource.removeProductPrice(productId, size)
         }
     }
 }

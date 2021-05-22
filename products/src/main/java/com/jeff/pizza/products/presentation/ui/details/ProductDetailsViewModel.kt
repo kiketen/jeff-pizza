@@ -8,7 +8,7 @@ import com.jeff.pizza.core.presentation.ui.SingleLiveEvent
 import com.jeff.pizza.navigation.NavigationFlow
 import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.products.domain.usecase.AddProductUseCase
-import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartIsEmptyUseCase
+import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
@@ -23,7 +23,7 @@ class ProductDetailsViewModel @Inject constructor(
         private val getProductUseCase: GetProductUseCase,
         private val addProductUseCase: AddProductUseCase,
         private val removeProductUseCase: RemoveProductUseCase,
-        private val getIfShoppingCartIsEmptyUseCase: GetIfShoppingCartIsEmptyUseCase,
+        private val getIfShoppingCartHasProductsUseCase: GetIfShoppingCartHasProductsUseCase,
         private val navigator: Navigator
 ): ViewModel() {
 
@@ -37,7 +37,7 @@ class ProductDetailsViewModel @Inject constructor(
 
     fun getProductDetails(productId: Long) {
         viewModelScope.launch {
-            _shoppingCartWithProducts.postValue(getIfShoppingCartIsEmptyUseCase.execute())
+            _shoppingCartWithProducts.postValue(getIfShoppingCartHasProductsUseCase.execute())
             val product = getProductUseCase.execute(productId)
             _uiState.postValue(ProductDetailsUIState.ShowingContent(product.toDetailsUI()))
         }
@@ -59,7 +59,7 @@ class ProductDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             val product = removeProductUseCase.execute(productId, size)
             _uiState.postValue(ProductDetailsUIState.ShowingContent(product.toDetailsUI()))
-            _shoppingCartWithProducts.postValue(getIfShoppingCartIsEmptyUseCase.execute())
+            _shoppingCartWithProducts.postValue(getIfShoppingCartHasProductsUseCase.execute())
         }
     }
 

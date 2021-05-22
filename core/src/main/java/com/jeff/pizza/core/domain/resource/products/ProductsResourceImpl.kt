@@ -19,7 +19,7 @@ class ProductsResourceImpl
         return if (refresh) {
             getProductsFromApiAndUpdateDataSource(userType)
         } else {
-            val products = dataSourceRepository.getProducts(userType)
+            val products = dataSourceRepository.getProducts()
             if (products.isLeft) {
                 getProductsFromApiAndUpdateDataSource(userType)
             } else {
@@ -29,35 +29,23 @@ class ProductsResourceImpl
     }
 
     override fun getProduct(productId: Long, userType: UserType): Product {
-        return dataSourceRepository.getProduct(productId, userType)
+        return dataSourceRepository.getProduct(productId)
     }
 
-    override fun addProduct(productId: Long, size: String): Product {
-        val product = dataSourceRepository.getProduct(productId)
-        val sizes = product.prices.map {
-            if (it.size == size) {
-                it.copy(count = it.count + 1)
-            } else {
-                it
-            }
-        }
-        val productIncreased = product.copy(prices = sizes)
-        dataSourceRepository.updateProduct(productIncreased)
-        return productIncreased
+    override fun addProductPrice(productId: Long, size: String): Product {
+        val price = dataSourceRepository.getProductPrice(productId, size)
+        dataSourceRepository.updateProductPrice(price.copy(count = price.count + 1), productId)
+        return dataSourceRepository.getProduct(productId)
     }
 
-    override fun removeProduct(productId: Long, size: String): Product {
-        val product = dataSourceRepository.getProduct(productId)
-        val sizes = product.prices.map {
-            if (it.size == size && it.count > 0) {
-                it.copy(count = it.count - 1)
-            } else {
-                it
-            }
-        }
-        val productDecreased = product.copy(prices = sizes)
-        dataSourceRepository.updateProduct(productDecreased)
-        return productDecreased
+    override fun removeProductPrice(productId: Long, size: String): Product {
+        val price = dataSourceRepository.getProductPrice(productId, size)
+        dataSourceRepository.updateProductPrice(price.copy(count = price.count - 1), productId)
+        return dataSourceRepository.getProduct(productId)
+    }
+
+    override fun getProductsAdded(): List<Product>? {
+        return dataSourceRepository.getProductsAdded()
     }
 
     private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {

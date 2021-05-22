@@ -1,10 +1,7 @@
 package com.jeff.pizza.core.data.di
 
 import com.jeff.pizza.core.data.repository.AppDatabase
-import com.jeff.pizza.core.data.repository.products.ProductsApiDefinition
-import com.jeff.pizza.core.data.repository.products.ProductsApiImpl
-import com.jeff.pizza.core.data.repository.products.ProductsDAO
-import com.jeff.pizza.core.data.repository.products.ProductsDataSourceImpl
+import com.jeff.pizza.core.data.repository.products.*
 import com.jeff.pizza.core.domain.repository.products.ProductsApi
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import dagger.Module
@@ -27,11 +24,17 @@ object ProductsRepositoryModule {
 
     @Provides
     fun providesProductsDataSource(
-            productsDAO: ProductsDAO
-    ): ProductsDataSource = ProductsDataSourceImpl(productsDAO)
+            productsDAO: ProductsDAO,
+            pricesDAO: PricesDAO
+    ): ProductsDataSource = ProductsDataSourceImpl(productsDAO, pricesDAO)
 
     @Provides
     fun provideProductsDAO(appDatabase: AppDatabase): ProductsDAO {
         return appDatabase.productsDAO()
+    }
+
+    @Provides
+    fun providePricesDAO(appDatabase: AppDatabase): PricesDAO {
+        return appDatabase.pricesDAO()
     }
 }

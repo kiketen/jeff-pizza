@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/shoppingCartFragment"
-        android:name="com.jeff.pizza.cart.ui.ShoppingCartFragment"
+        android:name="com.jeff.pizza.cart.presentation.ui.ShoppingCartFragment"
         android:label="ShoppingCart"
         tools:layout="@layout/shopping_cart_fragment" />
 

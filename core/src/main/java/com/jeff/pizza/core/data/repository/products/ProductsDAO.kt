@@ -4,21 +4,25 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
-import com.jeff.pizza.core.data.model.ProductApiModel
+import androidx.room.Transaction
+import com.jeff.pizza.core.data.model.ProductAndPricesDaoModel
+import com.jeff.pizza.core.data.model.ProductDaoModel
 
 @Dao
 interface ProductsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProducts(usersEntity: List<ProductApiModel>)
+    fun insertProducts(products: List<ProductDaoModel>)
 
-    @Query("SELECT * FROM ProductApiModel")
-    fun getProducts(): List<ProductApiModel>
+    @Transaction
+    @Query("SELECT * FROM ProductDaoModel")
+    fun getProducts(): List<ProductAndPricesDaoModel>
 
-    @Query("SELECT * FROM ProductApiModel WHERE id = :productId")
-    fun getProduct(productId: Long): ProductApiModel
+    @Transaction
+    @Query("SELECT * FROM ProductDaoModel product, PriceDaoModel price WHERE id = :productId ORDER BY price.customerSatisfaction")
+    fun getProduct(productId: Long): ProductAndPricesDaoModel
 
-    @Update
-    fun updateProduct(productApiModel: ProductApiModel)
+    @Transaction
+    @Query("SELECT * FROM ProductDaoModel WHERE (SELECT MAX(count) FROM PriceDaoModel WHERE productId = id) > 0")
+    fun getProductsAdded(): List<ProductAndPricesDaoModel>?
 }

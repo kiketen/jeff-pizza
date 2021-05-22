@@ -16,7 +16,7 @@ class AddProductUseCaseImpl
 
     override suspend fun execute(productId: Long, size: String): Product {
         return withContext(dispatcher) {
-            productsResource.addProduct(productId, size)
+            productsResource.addProductPrice(productId, size)
         }
     }
 }

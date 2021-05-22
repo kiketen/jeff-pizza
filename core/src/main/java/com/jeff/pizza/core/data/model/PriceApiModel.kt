@@ -6,20 +6,17 @@ import com.jeff.pizza.core.domain.model.user.UserType
 
 class PriceApiModel(
         @SerializedName("size") val size: String,
-        @SerializedName("price") val amount: Float,
-        @SerializedName("count") val count: Int?
+        @SerializedName("price") val amount: Float
 )
 
 fun List<PriceApiModel>.toDomain(userType: UserType) = map { it.toDomain(userType) }.sortedByDescending { it.customerSatisfaction }
-
-fun List<Price>.toApi() = map { it.toApi() }
 
 private fun PriceApiModel.toDomain(userType: UserType) =
         Price(
                 size = size,
                 amount = amount,
                 customerSatisfaction = getCustomerSatisfaction(userType, ProductSize.fromStringName(size)),
-                count = count ?: 0
+                count = 0
         )
 
 private fun getCustomerSatisfaction(userType: UserType, size: ProductSize) =
@@ -46,11 +43,3 @@ private fun getSingleSatisfaction(size: ProductSize) =
             ProductSize.XL -> 5
             ProductSize.UNKNOWN -> 0
         }
-
-
-private fun Price.toApi() =
-        PriceApiModel(
-                size = size,
-                amount = amount,
-                count = count
-        )

@@ -1,4 +1,4 @@
-package com.jeff.pizza.cart.model
+package com.jeff.pizza.cart.presentation.model
 
 
 data class ShoppingCartPriceUI(

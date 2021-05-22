@@ -1,11 +1,11 @@
-package com.jeff.pizza.cart.ui
+package com.jeff.pizza.cart.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.jeff.pizza.cart.model.ShoppingCartUIState
+import com.jeff.pizza.cart.presentation.model.ShoppingCartUIState
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.linhoapps.cart.databinding.ShoppingCartFragmentBinding

@@ -8,7 +8,7 @@ import com.jeff.pizza.core.domain.usecase.GetProductsUseCase
 import com.jeff.pizza.core.presentation.ui.SingleLiveEvent
 import com.jeff.pizza.navigation.NavigationFlow
 import com.jeff.pizza.navigation.Navigator
-import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartIsEmptyUseCase
+import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
         private val getProductsUseCase: GetProductsUseCase,
-        private val getIfShoppingCartIsEmptyUseCase: GetIfShoppingCartIsEmptyUseCase,
+        private val getIfShoppingCartHasProductsUseCase: GetIfShoppingCartHasProductsUseCase,
         private val navigator: Navigator
 ): ViewModel() {
 
@@ -41,7 +41,7 @@ class ProductsViewModel @Inject constructor(
 
     fun getShoppingCartNotificationVisibility() {
         viewModelScope.launch {
-            _showShoppingCartNotification.postValue(getIfShoppingCartIsEmptyUseCase.execute())
+            _showShoppingCartNotification.postValue(getIfShoppingCartHasProductsUseCase.execute())
         }
     }
 

@@ -1,9 +1,9 @@
-package com.jeff.pizza.cart.ui
+package com.jeff.pizza.cart.presentation.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jeff.pizza.cart.model.ShoppingCartProductUI
+import com.jeff.pizza.cart.presentation.model.ShoppingCartProductUI
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
 import com.linhoapps.cart.databinding.ShoppingCartProductBinding
 
