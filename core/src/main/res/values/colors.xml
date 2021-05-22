@@ -10,9 +10,10 @@
 
     <color name="background">#FAFAFA</color>
 
-    <color name="text_primary">#202020</color>
-    <color name="text_secondary">#A4A3A3</color>
-    <color name="text_light">#FFFFFF</color>
+    <color name="textPrimary">#202020</color>
+    <color name="textSecondary">#A4A3A3</color>
+    <color name="textLight">#FFFFFF</color>
 
     <color name="transparent">@android:color/transparent</color>
+    <color name="pureBlack">#000000</color>
 </resources>

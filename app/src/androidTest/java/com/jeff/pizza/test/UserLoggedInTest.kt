@@ -5,10 +5,13 @@ import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.core.data.repository.user.UserDataSourceRepository
 import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.di.ApplicationModule
-import com.jeff.pizza.mockers.productDetails
+import com.jeff.pizza.mockers.pizzaEspencatDetails
+import com.jeff.pizza.mockers.pizzaMargaritaDetails
 import com.jeff.pizza.mockers.products
+import com.jeff.pizza.mockers.shoppingCartInfo
 import com.jeff.pizza.pageobject.ProductDetailsPageObject
 import com.jeff.pizza.pageobject.ProductsPageObject
+import com.jeff.pizza.pageobject.ShoppingCartPageObject
 import com.jeff.pizza.pageobject.SplashPageObject
 import com.jeff.pizza.utils.readStringFromFile
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -55,10 +58,11 @@ class UserLoggedInTest: BaseFragmentTest() {
         val productsPageObject = ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
             assertProductsVisible(products, activityRule.activity)
+            assertCartShoppingEmpty()
             clickProduct(products.lastIndex - 1)
         }
-        ProductDetailsPageObject().apply {
-            assertProductDetailsVisible(productDetails, activityRule.activity)
+        val productDetailsPageObject = ProductDetailsPageObject().apply {
+            assertProductDetailsVisible(pizzaEspencatDetails, activityRule.activity)
             assertCartShoppingEmpty()
             val positionClicked = 1
 
@@ -66,7 +70,7 @@ class UserLoggedInTest: BaseFragmentTest() {
             assertProductAdded(positionClicked)
 
             clickRemoveButton(positionClicked)
-            assertProductDetailsVisible(productDetails, activityRule.activity)
+            assertProductDetailsVisible(pizzaEspencatDetails, activityRule.activity)
 
             clickAddButton(positionClicked)
             clickBackButton()
@@ -74,6 +78,19 @@ class UserLoggedInTest: BaseFragmentTest() {
         productsPageObject.apply {
             waitForVisible(R.id.listProducts)
             assertCartShoppingWithProducts()
+            clickProduct(products.lastIndex)
+        }
+        productDetailsPageObject.apply {
+            assertProductDetailsVisible(pizzaMargaritaDetails, activityRule.activity)
+            assertCartShoppingWithProducts()
+
+            val positionClicked = 1
+            clickAddButton(positionClicked)
+            assertProductAdded(positionClicked)
+            clickConfirmOrderButton()
+        }
+        ShoppingCartPageObject().apply {
+            assertShoppingCartInfo(shoppingCartInfo, activityRule.activity)
         }
     }
 

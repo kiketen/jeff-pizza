@@ -29,59 +29,22 @@ class ProductsResourceTest {
     private lateinit var productsResource: ProductsResourceImpl
 
     private val productId = 1L
+    private val productSize = "M"
+    private val price = Price(
+            size = productSize,
+            amount = 0F,
+            customerSatisfaction = 0,
+            count = 2
+    )
     private val product = Product(
             id = productId,
             name = "name",
             content = "content",
             imageUrl = "imageUrl",
-            prices = listOf(Price(
-                    size = "M",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 2
-            ), Price(
-                    size = "L",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 0
-            ))
+            prices = listOf(price, price.copy(size = "L"))
     )
-
-    private val increasedProduct = Product(
-            id = productId,
-            name = "name",
-            content = "content",
-            imageUrl = "imageUrl",
-            prices = listOf(Price(
-                    size = "M",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 3
-            ), Price(
-                    size = "L",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 0
-            ))
-    )
-
-    private val decreasedProduct = Product(
-            id = productId,
-            name = "name",
-            content = "content",
-            imageUrl = "imageUrl",
-            prices = listOf(Price(
-                    size = "M",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 1
-            ), Price(
-                    size = "L",
-                    amount = 0F,
-                    customerSatisfaction = 0,
-                    count = 0
-            ))
-    )
+    private val increasedProductPrice = price.copy(count = 3)
+    private val decreasedProductPrice = price.copy(count = 1)
 
     private val products = listOf(product)
     private val userType = UserType.SINGLE
@@ -112,39 +75,41 @@ class ProductsResourceTest {
 
     @Test
     fun `Given products from dataSource When call getProducts Then return products`() {
-        given(dataSourceRepository.getProducts(userType)).willReturn(Either.Right(products))
+        given(dataSourceRepository.getProducts()).willReturn(Either.Right(products))
 
         productsResource.getProducts(refresh = false, userType = userType)
 
-        verify(dataSourceRepository).getProducts(userType)
+        verify(dataSourceRepository).getProducts()
     }
 
     @Test
     fun `Given noData from dataSource When call getProducts Then call api`() {
         given(apiRepository.getProducts(userType)).willReturn(Either.Right(products))
-        given(dataSourceRepository.getProducts(userType)).willReturn(Either.Left(Failure.NoData))
+        given(dataSourceRepository.getProducts()).willReturn(Either.Left(Failure.NoData))
 
         productsResource.getProducts(refresh = false, userType = userType)
 
-        verify(dataSourceRepository).getProducts(userType)
+        verify(dataSourceRepository).getProducts()
         verify(apiRepository).getProducts(userType)
     }
 
     @Test
     fun `Given product When call addProduct Then call update with increased product`() {
-        given(dataSourceRepository.getProduct(productId)).willReturn(product)
+        given(dataSourceRepository.getProductPrice(productId, productSize)).willReturn(price)
 
-        productsResource.addProduct(productId, "M")
+        productsResource.addProductPrice(productId, productSize)
 
-        verify(dataSourceRepository).updateProduct(increasedProduct)
+        verify(dataSourceRepository).updateProductPrice(increasedProductPrice, productId)
+        verify(dataSourceRepository).getProduct(productId)
     }
 
     @Test
     fun `Given product When call removeProduct Then call update with decreased product`() {
-        given(dataSourceRepository.getProduct(productId)).willReturn(product)
+        given(dataSourceRepository.getProductPrice(productId, productSize)).willReturn(price)
 
-        productsResource.removeProduct(productId, "M")
+        productsResource.removeProductPrice(productId, productSize)
 
-        verify(dataSourceRepository).updateProduct(decreasedProduct)
+        verify(dataSourceRepository).updateProductPrice(decreasedProductPrice, productId)
+        verify(dataSourceRepository).getProduct(productId)
     }
 }

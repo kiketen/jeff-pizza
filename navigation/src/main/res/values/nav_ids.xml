@@ -3,4 +3,5 @@
     <item name="splash_flow" type="id" />
     <item name="login_flow" type="id" />
     <item name="products_flow" type="id" />
+    <item name="shopping_cart_flow" type="id" />
 </resources>

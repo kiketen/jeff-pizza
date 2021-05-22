@@ -10,6 +10,8 @@
 
     <include app:graph="@navigation/login_flow" />
 
+    <include app:graph="@navigation/shopping_cart_flow" />
+
     <action
         android:id="@+id/action_global_login_flow"
         app:destination="@id/login_flow"
@@ -23,4 +25,13 @@
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popUpTo="@id/main_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_shopping_cart_flow"
+        app:destination="@id/shopping_cart_flow"
+        app:enterAnim="@anim/push_slide_up"
+        app:exitAnim="@anim/no_action"
+        app:popEnterAnim="@anim/no_action"
+        app:popExitAnim="@anim/pop_slide_bottom" />
+
 </navigation>
