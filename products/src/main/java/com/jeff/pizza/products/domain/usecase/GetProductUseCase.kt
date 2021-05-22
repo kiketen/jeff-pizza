@@ -12,13 +12,12 @@ interface GetProductUseCase {
 }
 
 class GetProductUseCaseImpl
-@Inject constructor(private val userResource: UserResource,
-                    private val productsResource: ProductsResource,
+@Inject constructor(private val productsResource: ProductsResource,
                     private val dispatcher: CoroutineDispatcher): GetProductUseCase {
 
     override suspend fun execute(productId: Long): Product {
         return withContext(dispatcher) {
-            productsResource.getProduct(productId, userResource.getUserType())
+            productsResource.getProduct(productId)
         }
     }
 }

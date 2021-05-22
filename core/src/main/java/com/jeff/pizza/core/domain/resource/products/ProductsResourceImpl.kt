@@ -28,7 +28,7 @@ class ProductsResourceImpl
         }
     }
 
-    override fun getProduct(productId: Long, userType: UserType): Product {
+    override fun getProduct(productId: Long): Product {
         return dataSourceRepository.getProduct(productId)
     }
 

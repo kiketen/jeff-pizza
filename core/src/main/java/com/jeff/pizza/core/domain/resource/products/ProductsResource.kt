@@ -8,7 +8,7 @@ import com.jeff.pizza.core.domain.model.user.UserType
 
 interface ProductsResource {
     fun getProducts(refresh: Boolean, userType: UserType = UserType.UNKNOWN): Either<Failure, List<Product>>
-    fun getProduct(productId: Long, userType: UserType = UserType.UNKNOWN): Product
+    fun getProduct(productId: Long): Product
     fun addProductPrice(productId: Long, size: String): Product
     fun removeProductPrice(productId: Long, size: String): Product
     fun getProductsAdded(): List<Product>?

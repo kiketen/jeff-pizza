@@ -1,7 +1,6 @@
 package com.jeff.pizza.products.presentation.di
 
 import com.jeff.pizza.core.domain.resource.products.ProductsResource
-import com.jeff.pizza.core.domain.resource.user.UserResource
 import com.jeff.pizza.products.domain.usecase.AddProductUseCase
 import com.jeff.pizza.products.domain.usecase.AddProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
@@ -22,10 +21,9 @@ object ProductDetailsModule {
 
     @Provides
     fun providesGetProductDetailsUseCase(
-            resource: UserResource,
             productsResource: ProductsResource,
             dispatcher: CoroutineDispatcher
-    ): GetProductUseCase = GetProductUseCaseImpl(resource, productsResource, dispatcher)
+    ): GetProductUseCase = GetProductUseCaseImpl(productsResource, dispatcher)
 
     @Provides
     fun providesAddProductUseCase(
