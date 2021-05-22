@@ -23,9 +23,6 @@ class ShoppingCartViewModel @Inject constructor(
             getShoppingCartInfoUseCase.execute().either(
                     onSuccess = {
                         _uiState.postValue(ShoppingCartUIState.ShowingContent(it))
-                    },
-                    onError = {
-
                     }
             )
         }
