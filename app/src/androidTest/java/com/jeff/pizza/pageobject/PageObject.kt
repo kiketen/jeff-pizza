@@ -25,6 +25,11 @@ interface PageObject {
                 .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
 
+    fun assertTextVisible(text: String) {
+        Espresso.onView(ViewMatchers.withText(text))
+                .check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+    }
+
     fun assertRecyclerViewItemChild(@IdRes recyclerViewId: Int, @IdRes childIdRes: Int, position: Int, matcherView: Matcher<View>) {
         Espresso.onView(withRecyclerView(recyclerViewId).atPositionOnView(position, childIdRes)).check(ViewAssertions.matches(matcherView))
     }

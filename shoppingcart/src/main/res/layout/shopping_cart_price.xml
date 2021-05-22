@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/contentShoppingCartPrice"
+        android:id="@+id/contentShoppingCart"
         style="@style/Body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,9 +21,9 @@
         style="@style/Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/contentShoppingCartPrice"
+        app:layout_constraintBottom_toBottomOf="@id/contentShoppingCart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/contentShoppingCartPrice"
+        app:layout_constraintTop_toTopOf="@id/contentShoppingCart"
         tools:text="15.5$" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

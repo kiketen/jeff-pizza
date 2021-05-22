@@ -39,7 +39,7 @@ class ProductDetailsPageObject: PageObject {
         assertRecyclerViewItemChild(R.id.pricesProductDetails, R.id.removeProductButton, position, isDisplayed())
     }
 
-    private fun assertCartShoppingWithProducts() {
+    fun assertCartShoppingWithProducts() {
         assertDisplayed(R.id.cartNotification)
         assertDisplayed(R.id.confirmButtonProductDetails)
     }
@@ -59,5 +59,9 @@ class ProductDetailsPageObject: PageObject {
 
     fun clickBackButton() {
         clickOn(R.id.backButtonProductDetails)
+    }
+
+    fun clickConfirmOrderButton(){
+        clickOn(R.id.confirmButtonProductDetails)
     }
 }

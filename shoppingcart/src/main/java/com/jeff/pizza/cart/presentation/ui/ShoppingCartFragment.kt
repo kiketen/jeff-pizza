@@ -57,7 +57,7 @@ class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
         productsAdapter.updateItems(shoppingCartInfoUI.products)
         with(binding) {
             shoppingCartInfoUI.specialProduct?.let {
-                specialProductShoppingCart.contentShoppingCartPrice.text = getString(R.string.shopping_cart_product_info, it.count, it.text)
+                specialProductShoppingCart.contentShoppingCart.text = getString(R.string.shopping_cart_product_info, it.count, it.text)
                 specialProductShoppingCart.priceShoppingCart.text = getString(R.string.product_details_amount, it.amount.toString())
             }
             totalAmountShoppingCart.text = getString(R.string.shopping_cart_total_amount, shoppingCartInfoUI.totalAmount.toString())

@@ -22,10 +22,10 @@ class ShoppingCartPricesAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val price = prices[position]
         with(binding) {
-            contentShoppingCartPrice.text = contentShoppingCartPrice.context.getString(
+            contentShoppingCart.text = contentShoppingCart.context.getString(
                     R.string.shopping_cart_product_info, price.count, price.text
             )
-            priceShoppingCart.text = contentShoppingCartPrice.context.getString(R.string.product_details_amount, price.amount.toString())
+            priceShoppingCart.text = contentShoppingCart.context.getString(R.string.product_details_amount, price.amount.toString())
         }
     }
 
