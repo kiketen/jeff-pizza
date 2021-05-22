@@ -44,7 +44,7 @@ class ProductsResourceImpl
         return dataSourceRepository.getProduct(productId)
     }
 
-    override fun getProductsAdded(): List<Product>? {
+    override fun getProductsAdded(): List<Product> {
         return dataSourceRepository.getProductsAdded()
     }
 

@@ -13,7 +13,9 @@
 
     <string name="products_shopping_cart_error">The shopping cart is empty</string>
 
+    <string name="shopping_cart_product_info">%1$d %2$s</string>
     <string name="shopping_cart_title">Order Summary</string>
+    <string name="shopping_cart_total_amount">Total: %1$s</string>
 
     <string name="retry">Retry</string>
     <string name="unexpected_error">Oops! Error getting data</string>

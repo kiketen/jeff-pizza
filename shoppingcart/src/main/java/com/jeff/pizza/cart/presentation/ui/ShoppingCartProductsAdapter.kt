@@ -19,7 +19,11 @@ class ShoppingCartProductsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        val product = products[position]
+        with(binding) {
+            titleProductShoppingCart.text = product.name
+            pricesProductShoppingCart.adapter = ShoppingCartPricesAdapter(product.prices.toMutableList())
+        }
     }
 
 }

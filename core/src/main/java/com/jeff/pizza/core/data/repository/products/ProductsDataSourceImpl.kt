@@ -1,12 +1,12 @@
 package com.jeff.pizza.core.data.repository.products
 
+import com.jeff.pizza.core.data.model.ProductAndPricesDaoModel
 import com.jeff.pizza.core.data.model.toDao
 import com.jeff.pizza.core.data.model.toDomain
 import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.products.Product
-import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import javax.inject.Inject
 
@@ -44,7 +44,13 @@ class ProductsDataSourceImpl @Inject constructor(
         pricesDAO.updatePrice(price.toDao(productId))
     }
 
-    override fun getProductsAdded(): List<Product>? {
-        return productsDAO.getProductsAdded()?.toDomain()
+    override fun getProductsAdded(): List<Product> {
+        return productsDAO.getProductsAdded().filterPricesAdded().toDomain()
+    }
+
+    private fun List<ProductAndPricesDaoModel>.filterPricesAdded(): List<ProductAndPricesDaoModel> {
+        return map {
+            it.copy(prices = it.prices.filter { price -> price.count > 0 })
+        }
     }
 }

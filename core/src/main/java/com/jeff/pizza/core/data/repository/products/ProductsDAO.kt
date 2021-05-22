@@ -23,6 +23,6 @@ interface ProductsDAO {
     fun getProduct(productId: Long): ProductAndPricesDaoModel
 
     @Transaction
-    @Query("SELECT * FROM ProductDaoModel product, PriceDaoModel price WHERE price.count > 0")
-    fun getProductsAdded(): List<ProductAndPricesDaoModel>?
+    @Query("SELECT * FROM ProductDaoModel WHERE id IN (SELECT productId FROM PriceDaoModel WHERE count > 0)")
+    fun getProductsAdded(): List<ProductAndPricesDaoModel>
 }
