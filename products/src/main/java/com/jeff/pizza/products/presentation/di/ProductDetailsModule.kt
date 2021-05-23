@@ -1,12 +1,17 @@
 package com.jeff.pizza.products.presentation.di
 
 import com.jeff.pizza.core.domain.resource.products.ProductsResource
+import com.jeff.pizza.core.domain.resource.user.UserResource
 import com.jeff.pizza.products.domain.usecase.AddProductUseCase
 import com.jeff.pizza.products.domain.usecase.AddProductUseCaseImpl
+import com.jeff.pizza.products.domain.usecase.AddSpecialProductUseCase
+import com.jeff.pizza.products.domain.usecase.AddSpecialProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCaseImpl
+import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
+import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCaseImpl
 import dagger.Module
@@ -42,4 +47,16 @@ object ProductDetailsModule {
             productsResource: ProductsResource,
             dispatcher: CoroutineDispatcher
     ): GetIfShoppingCartHasProductsUseCase = GetIfShoppingCartHasProductsUseCaseImpl(productsResource, dispatcher)
+
+    @Provides
+    fun providesGetSpecialProductUseCase(
+            userResource: UserResource,
+            dispatcher: CoroutineDispatcher
+    ): GetSpecialProductUseCase = GetSpecialProductUseCaseImpl(userResource, dispatcher)
+
+    @Provides
+    fun providesAddSpecialProductUseCase(
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): AddSpecialProductUseCase = AddSpecialProductUseCaseImpl(productsResource, dispatcher)
 }

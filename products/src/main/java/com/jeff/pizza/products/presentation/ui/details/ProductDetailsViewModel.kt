@@ -10,6 +10,7 @@ import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.products.domain.usecase.AddProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCase
+import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
 import com.jeff.pizza.products.presentation.model.toDetailsUI
@@ -24,6 +25,7 @@ class ProductDetailsViewModel @Inject constructor(
         private val addProductUseCase: AddProductUseCase,
         private val removeProductUseCase: RemoveProductUseCase,
         private val getIfShoppingCartHasProductsUseCase: GetIfShoppingCartHasProductsUseCase,
+        private val getSpecialProductUseCase: GetSpecialProductUseCase,
         private val navigator: Navigator
 ): ViewModel() {
 

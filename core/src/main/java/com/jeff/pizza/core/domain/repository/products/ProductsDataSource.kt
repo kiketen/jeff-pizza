@@ -4,7 +4,7 @@ import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.products.Product
-import com.jeff.pizza.core.domain.model.user.UserType
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 
 
 interface ProductsDataSource {
@@ -15,4 +15,5 @@ interface ProductsDataSource {
     fun updateProductPrice(price: Price, productId: Long)
     fun getProductsAdded(): List<Product>
     fun resetProductsCount()
+    fun addSpecialProduct(specialProduct: SpecialProduct)
 }

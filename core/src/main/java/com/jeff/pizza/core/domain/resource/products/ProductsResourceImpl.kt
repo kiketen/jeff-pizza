@@ -3,6 +3,7 @@ package com.jeff.pizza.core.domain.resource.products
 import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.core.domain.repository.products.ProductsApi
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
@@ -50,6 +51,10 @@ class ProductsResourceImpl
 
     override fun resetProductsCount() {
         dataSourceRepository.resetProductsCount()
+    }
+
+    override fun addSpecialProduct(specialProduct: SpecialProduct) {
+        dataSourceRepository.addSpecialProduct(specialProduct)
     }
 
     private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {

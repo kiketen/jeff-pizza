@@ -7,6 +7,7 @@ import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import javax.inject.Inject
 
@@ -15,6 +16,8 @@ class ProductsDataSourceImpl @Inject constructor(
         private val productsDAO: ProductsDAO,
         private val pricesDAO: PricesDAO
 ): ProductsDataSource {
+
+    private var specialProduct: SpecialProduct? = null
 
     override fun getProducts(): Either<Failure.NoData, List<Product>> {
         val products = productsDAO.getProducts().toDomain()
@@ -50,6 +53,11 @@ class ProductsDataSourceImpl @Inject constructor(
 
     override fun resetProductsCount() {
         pricesDAO.resetCount()
+        specialProduct = null
+    }
+
+    override fun addSpecialProduct(specialProduct: SpecialProduct) {
+        this.specialProduct = specialProduct
     }
 
     private fun List<ProductAndPricesDaoModel>.filterPricesAdded(): List<ProductAndPricesDaoModel> {
