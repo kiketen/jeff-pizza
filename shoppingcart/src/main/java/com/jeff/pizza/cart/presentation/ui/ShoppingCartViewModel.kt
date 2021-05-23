@@ -5,14 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jeff.pizza.cart.domain.usecase.GetShoppingCartInfoUseCase
+import com.jeff.pizza.cart.domain.usecase.OrderShoppingCartUseCase
 import com.jeff.pizza.cart.presentation.model.ShoppingCartUIState
+import com.jeff.pizza.navigation.NavigationFlow
+import com.jeff.pizza.navigation.Navigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ShoppingCartViewModel @Inject constructor(
-        getShoppingCartInfoUseCase: GetShoppingCartInfoUseCase
+        getShoppingCartInfoUseCase: GetShoppingCartInfoUseCase,
+        private val orderShoppingCartUseCase: OrderShoppingCartUseCase,
+        private val navigator: Navigator
 ): ViewModel() {
 
     private val _uiState = MutableLiveData<ShoppingCartUIState>()
@@ -26,6 +31,13 @@ class ShoppingCartViewModel @Inject constructor(
                     }
             )
         }
+    }
+
+    fun onConfirmButtonClick() {
+        viewModelScope.launch {
+            orderShoppingCartUseCase.execute()
+        }
+        navigator.navigateToFlow(NavigationFlow.Products)
     }
 
 }

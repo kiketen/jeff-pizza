@@ -9,6 +9,7 @@ import com.jeff.pizza.cart.presentation.model.ShoppingCartInfoUI
 import com.jeff.pizza.cart.presentation.model.ShoppingCartUIState
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.ui.BaseFragment
+import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.linhoapps.cart.R
 import com.linhoapps.cart.databinding.ShoppingCartFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,11 +35,18 @@ class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setLayout()
+        setListeners()
         setViewModelObservers()
     }
 
     private fun setLayout() {
         binding.productsShoppingCart.adapter = productsAdapter
+    }
+
+    private fun setListeners() {
+        binding.confirmButtonShoppingCart.setSensitiveClickListener {
+            viewModel.onConfirmButtonClick()
+        }
     }
 
     private fun setViewModelObservers() {

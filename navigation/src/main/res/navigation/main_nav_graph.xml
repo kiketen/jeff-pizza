@@ -15,15 +15,15 @@
     <action
         android:id="@+id/action_global_login_flow"
         app:destination="@id/login_flow"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
+        app:enterAnim="@anim/push_slide_in"
+        app:exitAnim="@anim/no_action"
         app:popUpTo="@id/main_nav_graph" />
 
     <action
         android:id="@+id/action_global_products_flow"
         app:destination="@id/products_flow"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
+        app:enterAnim="@anim/push_slide_in"
+        app:exitAnim="@anim/no_action"
         app:popUpTo="@id/main_nav_graph" />
 
     <action

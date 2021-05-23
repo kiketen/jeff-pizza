@@ -16,6 +16,9 @@ interface PricesDAO {
     @Update
     fun updatePrice(priceDaoModel: PriceDaoModel)
 
+    @Query("UPDATE PriceDaoModel SET count = 0")
+    fun resetCount()
+
     @Query("SELECT * FROM PriceDaoModel WHERE productId = :productId AND size = :size")
     fun getPrice(productId: Long, size: String): PriceDaoModel
 }

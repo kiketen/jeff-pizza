@@ -2,6 +2,8 @@ package com.jeff.pizza.cart.presentation.di
 
 import com.jeff.pizza.cart.domain.usecase.GetShoppingCartInfoUseCase
 import com.jeff.pizza.cart.domain.usecase.GetShoppingCartInfoUseCaseImpl
+import com.jeff.pizza.cart.domain.usecase.OrderShoppingCartUseCase
+import com.jeff.pizza.cart.domain.usecase.OrderShoppingCartUseCaseImpl
 import com.jeff.pizza.core.domain.resource.products.ProductsResource
 import dagger.Module
 import dagger.Provides
@@ -19,4 +21,9 @@ object ShoppingCartModule {
             dispatcher: CoroutineDispatcher
     ): GetShoppingCartInfoUseCase = GetShoppingCartInfoUseCaseImpl(productsResource, dispatcher)
 
+    @Provides
+    fun providesOrderShoppingCartUseCase(
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): OrderShoppingCartUseCase = OrderShoppingCartUseCaseImpl(productsResource, dispatcher)
 }

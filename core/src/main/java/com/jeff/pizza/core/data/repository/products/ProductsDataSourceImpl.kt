@@ -48,6 +48,10 @@ class ProductsDataSourceImpl @Inject constructor(
         return productsDAO.getProductsAdded().filterPricesAdded().toDomain()
     }
 
+    override fun resetProductsCount() {
+        pricesDAO.resetCount()
+    }
+
     private fun List<ProductAndPricesDaoModel>.filterPricesAdded(): List<ProductAndPricesDaoModel> {
         return map {
             it.copy(prices = it.prices.filter { price -> price.count > 0 })
