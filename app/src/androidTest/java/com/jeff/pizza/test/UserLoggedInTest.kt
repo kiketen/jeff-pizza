@@ -44,7 +44,7 @@ class UserLoggedInTest: BaseFragmentTest() {
     }
 
     @Test
-    fun givenSingleUserWhenStartsAppThenAddProductsToTheShoppingCart() {
+    fun givenSingleUserWhenStartsAppThenCreateAnOrder() {
         userDataSource.setUserType(UserType.SINGLE)
         mockServer.dispatcher = object: Dispatcher() {
             override fun dispatch(request: RecordedRequest): MockResponse {
@@ -56,9 +56,7 @@ class UserLoggedInTest: BaseFragmentTest() {
         activityRule.launchActivity(null)
         SplashPageObject().assertVisible()
         val productsPageObject = ProductsPageObject().apply {
-            waitForVisible(R.id.listProducts)
-            assertProductsVisible(products, activityRule.activity)
-            assertCartShoppingEmpty()
+            assertProductsInit()
             clickProduct(products.lastIndex - 1)
         }
         val productDetailsPageObject = ProductDetailsPageObject().apply {
@@ -91,7 +89,17 @@ class UserLoggedInTest: BaseFragmentTest() {
         }
         ShoppingCartPageObject().apply {
             assertShoppingCartInfo(shoppingCartInfo, activityRule.activity)
+            clickConfirmOrderButton()
         }
+        productsPageObject.apply {
+            assertProductsInit()
+        }
+    }
+
+    private fun ProductsPageObject.assertProductsInit() {
+        waitForVisible(R.id.listProducts)
+        assertProductsVisible(products, activityRule.activity)
+        assertCartShoppingEmpty()
     }
 
 }
