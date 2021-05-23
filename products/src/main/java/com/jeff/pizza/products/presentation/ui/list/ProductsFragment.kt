@@ -135,7 +135,6 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
                 }
                 .setCancelable(false)
                 .show()
-
     }
 }
 

@@ -68,14 +68,24 @@ class ProductsViewModel @Inject constructor(
                             _askForSpecialProduct.postValue(it)
                         },
                         onError = {
-                            navigator.navigateToFlow(NavigationFlow.ShoppingCart)
+                            goToShoppingCart()
                         }
                 )
             }
         } else {
             _error.postValue(ProductsError.ErrorShort(R.string.products_shopping_cart_error))
         }
+    }
 
+    fun onConfirmAddSpecialProductClick(specialProduct: SpecialProduct) {
+        viewModelScope.launch {
+            addSpecialProductUseCase.execute(specialProduct)
+            goToShoppingCart()
+        }
+    }
+
+    fun onCancelAddSpecialProductClick() {
+        goToShoppingCart()
     }
 
     private fun getProducts(refresh: Boolean) {
@@ -92,14 +102,7 @@ class ProductsViewModel @Inject constructor(
         }
     }
 
-    fun onConfirmAddSpecialProductClick(specialProduct: SpecialProduct) {
-        viewModelScope.launch {
-            addSpecialProductUseCase.execute(specialProduct)
-            navigator.navigateToFlow(NavigationFlow.ShoppingCart)
-        }
-    }
-
-    fun onCancelAddSpecialProductClick() {
+    private fun goToShoppingCart() {
         navigator.navigateToFlow(NavigationFlow.ShoppingCart)
     }
 }
