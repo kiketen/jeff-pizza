@@ -14,4 +14,5 @@ interface ProductsDataSource {
     fun insertProducts(products: List<Product>)
     fun updateProductPrice(price: Price, productId: Long)
     fun getProductsAdded(): List<Product>
+    fun resetProductsCount()
 }

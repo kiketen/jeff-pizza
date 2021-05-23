@@ -48,6 +48,10 @@ class ProductsResourceImpl
         return dataSourceRepository.getProductsAdded()
     }
 
+    override fun resetProductsCount() {
+        dataSourceRepository.resetProductsCount()
+    }
+
     private fun getProductsFromApiAndUpdateDataSource(userType: UserType) = apiRepository.getProducts(userType).apply {
         either(onSuccess = { dataSourceRepository.insertProducts(it) })
     }

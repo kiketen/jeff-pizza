@@ -12,4 +12,5 @@ interface ProductsResource {
     fun addProductPrice(productId: Long, size: String): Product
     fun removeProductPrice(productId: Long, size: String): Product
     fun getProductsAdded(): List<Product>
+    fun resetProductsCount()
 }
