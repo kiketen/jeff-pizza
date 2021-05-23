@@ -20,7 +20,7 @@ class GetSpecialProductUseCaseImpl
     override suspend fun execute(): Either<Failure.NoData, SpecialProduct> {
         return withContext(dispatcher) {
             if (userResource.getUserType() == UserType.MARRIED) {
-                Either.Right(SpecialProduct("Super Movie", 3.5F, "€", 1))
+                Either.Right(SpecialProduct("Titanic Movie", 3.5F, "€", 1))
             } else {
                 Either.Left(Failure.NoData)
             }

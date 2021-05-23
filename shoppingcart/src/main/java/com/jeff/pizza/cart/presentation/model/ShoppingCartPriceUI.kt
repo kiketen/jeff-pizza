@@ -1,7 +1,7 @@
 package com.jeff.pizza.cart.presentation.model
 
-import com.jeff.pizza.cart.domain.model.SpecialProduct
 import com.jeff.pizza.core.domain.model.products.Price
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 
 
 data class ShoppingCartPriceUI(
@@ -13,7 +13,7 @@ data class ShoppingCartPriceUI(
 fun SpecialProduct.toUI() =
         ShoppingCartPriceUI(
                 count = count,
-                text = text,
+                text = name,
                 amount = amount
         )
 

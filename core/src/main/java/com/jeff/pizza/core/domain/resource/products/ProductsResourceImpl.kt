@@ -4,6 +4,7 @@ import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Product
 import com.jeff.pizza.core.domain.model.products.SpecialProduct
+import com.jeff.pizza.core.domain.model.shoppingcart.ShoppingCartInfo
 import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.core.domain.repository.products.ProductsApi
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
@@ -45,8 +46,10 @@ class ProductsResourceImpl
         return dataSourceRepository.getProduct(productId)
     }
 
-    override fun getProductsAdded(): List<Product> {
-        return dataSourceRepository.getProductsAdded()
+    override fun getShoppingCartInfo(): ShoppingCartInfo {
+        val productsAdded = dataSourceRepository.getProductsAdded()
+        val specialProduct = dataSourceRepository.getSpecialProduct()
+        return ShoppingCartInfo(productsAdded, specialProduct)
     }
 
     override fun resetProductsCount() {

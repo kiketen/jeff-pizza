@@ -1,7 +1,11 @@
 package com.jeff.pizza.core.data.di
 
 import com.jeff.pizza.core.data.repository.AppDatabase
-import com.jeff.pizza.core.data.repository.products.*
+import com.jeff.pizza.core.data.repository.products.PricesDAO
+import com.jeff.pizza.core.data.repository.products.ProductsApiDefinition
+import com.jeff.pizza.core.data.repository.products.ProductsApiImpl
+import com.jeff.pizza.core.data.repository.products.ProductsDAO
+import com.jeff.pizza.core.data.repository.products.ProductsDataSourceImpl
 import com.jeff.pizza.core.domain.repository.products.ProductsApi
 import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import dagger.Module
@@ -21,12 +25,6 @@ object ProductsRepositoryModule {
 
     @Provides
     fun providesProductsApiDefinition(retrofit: Retrofit): ProductsApiDefinition = retrofit.create(ProductsApiDefinition::class.java)
-
-    @Provides
-    fun providesProductsDataSource(
-            productsDAO: ProductsDAO,
-            pricesDAO: PricesDAO
-    ): ProductsDataSource = ProductsDataSourceImpl(productsDAO, pricesDAO)
 
     @Provides
     fun provideProductsDAO(appDatabase: AppDatabase): ProductsDAO {

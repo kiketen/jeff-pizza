@@ -60,6 +60,10 @@ class ProductsDataSourceImpl @Inject constructor(
         this.specialProduct = specialProduct
     }
 
+    override fun getSpecialProduct(): SpecialProduct? {
+        return specialProduct
+    }
+
     private fun List<ProductAndPricesDaoModel>.filterPricesAdded(): List<ProductAndPricesDaoModel> {
         return map {
             it.copy(prices = it.prices.filter { price -> price.count > 0 })

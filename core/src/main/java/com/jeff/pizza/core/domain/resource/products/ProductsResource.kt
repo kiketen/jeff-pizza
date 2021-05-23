@@ -4,6 +4,7 @@ import com.jeff.pizza.core.domain.model.base.Either
 import com.jeff.pizza.core.domain.model.base.Failure
 import com.jeff.pizza.core.domain.model.products.Product
 import com.jeff.pizza.core.domain.model.products.SpecialProduct
+import com.jeff.pizza.core.domain.model.shoppingcart.ShoppingCartInfo
 import com.jeff.pizza.core.domain.model.user.UserType
 
 
@@ -12,7 +13,7 @@ interface ProductsResource {
     fun getProduct(productId: Long): Product
     fun addProductPrice(productId: Long, size: String): Product
     fun removeProductPrice(productId: Long, size: String): Product
-    fun getProductsAdded(): List<Product>
+    fun getShoppingCartInfo(): ShoppingCartInfo
     fun resetProductsCount()
     fun addSpecialProduct(specialProduct: SpecialProduct)
 }

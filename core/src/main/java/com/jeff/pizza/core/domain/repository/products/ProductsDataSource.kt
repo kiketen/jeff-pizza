@@ -16,4 +16,5 @@ interface ProductsDataSource {
     fun getProductsAdded(): List<Product>
     fun resetProductsCount()
     fun addSpecialProduct(specialProduct: SpecialProduct)
+    fun getSpecialProduct(): SpecialProduct?
 }
