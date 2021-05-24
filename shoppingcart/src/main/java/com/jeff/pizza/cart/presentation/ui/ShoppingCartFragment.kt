@@ -75,9 +75,10 @@ class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
                 specialProductShoppingCart.contentShoppingCart.text = getString(R.string.shopping_cart_product_info,
                         shoppingCartInfoUI.specialProduct.count, shoppingCartInfoUI.specialProduct.text)
                 specialProductShoppingCart.priceShoppingCart.text = getString(R.string.product_details_amount,
-                        shoppingCartInfoUI.specialProduct.amount.toString())
+                        shoppingCartInfoUI.specialProduct.amount.toString(), shoppingCartInfoUI.specialProduct.currency)
             }
-            totalAmountShoppingCart.text = getString(R.string.shopping_cart_total_amount, shoppingCartInfoUI.totalAmount.toString())
+            totalAmountShoppingCart.text = getString(R.string.shopping_cart_total_amount,
+                    shoppingCartInfoUI.totalAmount.toString(), shoppingCartInfoUI.currency)
         }
     }
 }

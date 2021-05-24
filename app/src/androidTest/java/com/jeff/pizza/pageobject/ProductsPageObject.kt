@@ -17,7 +17,8 @@ class ProductsPageObject: PageObject {
             scrollListToPosition(R.id.listProducts, index)
             assertDisplayedAtPosition(R.id.listProducts, index, R.id.titleProduct, product.name)
             assertDisplayedAtPosition(R.id.listProducts, index, R.id.priceProduct,
-                    context.resources.getString(R.string.product_price_since, product.cheaperAmount.toString()))
+                    context.resources.getString(R.string.product_price_since,
+                            product.cheaperAmount.toString(), product.currency))
         }
     }
 

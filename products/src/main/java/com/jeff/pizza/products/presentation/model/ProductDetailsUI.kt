@@ -27,5 +27,6 @@ private fun Price.toUI() =
         PriceUI(
                 size = size,
                 amount = amount,
-                count = count
+                count = count,
+                currency = currency
         )

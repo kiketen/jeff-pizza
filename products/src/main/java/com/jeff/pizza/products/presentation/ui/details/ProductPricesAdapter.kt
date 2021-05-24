@@ -27,7 +27,8 @@ class ProductPricesAdapter(
         val productPrice = prices[position]
         with(binding) {
             sizeProductDetails.text = sizeProductDetails.context.getString(R.string.product_details_size, productPrice.size)
-            amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount, productPrice.amount.toString())
+            amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount,
+                    productPrice.amount.toString(), productPrice.currency)
             productsNumber.text = productPrice.count.toString()
             handleRemoveButtonVisibility(productPrice.count)
             addProductButton.setOnClickListener {

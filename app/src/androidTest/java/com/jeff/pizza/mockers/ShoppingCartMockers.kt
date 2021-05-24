@@ -15,8 +15,8 @@ val shoppingCartInfo = ShoppingCartInfoUI(
                                 ShoppingCartPriceUI(
                                         count = 1,
                                         text = "L",
-                                        amount = 12.5F
-                                )
+                                        amount = 12.5F,
+                                        currency = "€")
                         )
                 ),
                 ShoppingCartProductUI(
@@ -25,13 +25,15 @@ val shoppingCartInfo = ShoppingCartInfoUI(
                                 ShoppingCartPriceUI(
                                         count = 1,
                                         text = "XL",
-                                        amount = 14.5F
+                                        amount = 14.5F,
+                                        currency = "€"
                                 )
                         )
                 )
         ),
         specialProduct = null,
-        totalAmount = 27.0F
+        totalAmount = 27.0F,
+        currency = "€"
 )
 
 val shoppingCartMarriedInfo = ShoppingCartInfoUI(
@@ -42,11 +44,13 @@ val shoppingCartMarriedInfo = ShoppingCartInfoUI(
                                 ShoppingCartPriceUI(
                                         count = 1,
                                         text = "XL",
-                                        amount = 15.5F
+                                        amount = 15.5F,
+                                        currency = "€"
                                 )
                         )
                 )
         ),
         specialProduct = specialProduct.toUI(),
-        totalAmount = 19F
+        totalAmount = 19F,
+        currency = "€"
 )

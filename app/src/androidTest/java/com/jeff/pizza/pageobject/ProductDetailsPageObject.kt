@@ -26,7 +26,7 @@ class ProductDetailsPageObject: PageObject {
                     context.getString(R.string.product_details_size, price.size)
             )
             assertDisplayedAtPosition(R.id.pricesProductDetails, index, R.id.amountProductDetails,
-                    context.getString(R.string.product_details_amount, price.amount)
+                    context.getString(R.string.product_details_amount, price.amount, price.currency)
             )
             assertDisplayedAtPosition(R.id.pricesProductDetails, index, R.id.productsNumber, "0")
             assertRecyclerViewItemChild(R.id.pricesProductDetails, R.id.addProductButton, index, isDisplayed())

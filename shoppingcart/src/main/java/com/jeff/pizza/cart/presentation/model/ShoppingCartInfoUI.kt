@@ -6,12 +6,14 @@ import com.jeff.pizza.core.domain.model.shoppingcart.ShoppingCartInfo
 data class ShoppingCartInfoUI(
         val products: List<ShoppingCartProductUI>,
         val specialProduct: ShoppingCartPriceUI?,
-        val totalAmount: Float
+        val totalAmount: Float,
+        val currency: String
 )
 
 fun ShoppingCartInfo.toUI() =
         ShoppingCartInfoUI(
                 products = products.toUI(),
                 specialProduct = specialProduct?.toUI(),
-                totalAmount = totalAmount
+                totalAmount = totalAmount,
+                currency = currency
         )

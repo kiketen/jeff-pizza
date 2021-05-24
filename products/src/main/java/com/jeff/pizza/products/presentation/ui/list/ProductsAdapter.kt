@@ -26,7 +26,8 @@ class ProductsAdapter(
         val product = products[position]
         with(binding) {
             titleProduct.text = product.name
-            priceProduct.text = priceProduct.context.getString(R.string.product_price_since, product.cheaperAmount.toString())
+            priceProduct.text = priceProduct.context.getString(R.string.product_price_since,
+                    product.cheaperAmount.toString(), product.currency)
             imageProduct.loadImage(product.imageUrl)
             productCard.setSensitiveClickListener {
                 onItemClicked(product.id)

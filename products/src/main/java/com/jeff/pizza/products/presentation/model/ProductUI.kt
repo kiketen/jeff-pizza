@@ -8,7 +8,8 @@ data class ProductUI(
         val id: Long,
         val name: String,
         val imageUrl: String,
-        val cheaperAmount: Float?
+        val cheaperAmount: Float?,
+        val currency: String
 )
 
 fun List<Product>.toUI() = map { it.toUI() }
@@ -18,7 +19,8 @@ private fun Product.toUI() =
                 id = id,
                 name = name,
                 imageUrl = imageUrl,
-                cheaperAmount = prices.getCheaperAmount()
+                cheaperAmount = prices.getCheaperAmount(),
+                currency = prices.first().currency
         )
 
 private fun List<Price>.getCheaperAmount() = minByOrNull { it.amount }?.amount
