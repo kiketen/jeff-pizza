@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jeff.pizza.cart.presentation.model.ShoppingCartProductUI
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
-import com.linhoapps.cart.databinding.ShoppingCartProductBinding
+import com.jeff.pizza.cart.databinding.ShoppingCartProductBinding
 
 class ShoppingCartProductsAdapter(
         private val products: MutableList<ShoppingCartProductUI>

@@ -11,8 +11,8 @@ import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.splash.presentation.model.SplashUIState
-import com.linhoapps.splash.R
-import com.linhoapps.splash.databinding.SplashFragmentBinding
+import com.jeff.pizza.splash.R
+import com.jeff.pizza.splash.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
