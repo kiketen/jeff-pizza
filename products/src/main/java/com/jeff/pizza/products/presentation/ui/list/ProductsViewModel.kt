@@ -12,6 +12,7 @@ import com.jeff.pizza.navigation.Navigator
 import com.jeff.pizza.products.domain.usecase.AddSpecialProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetIfShoppingCartHasProductsUseCase
 import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
+import com.jeff.pizza.products.domain.usecase.LogoutUseCase
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState
@@ -26,6 +27,7 @@ class ProductsViewModel @Inject constructor(
         private val getIfShoppingCartHasProductsUseCase: GetIfShoppingCartHasProductsUseCase,
         private val getSpecialProductUseCase: GetSpecialProductUseCase,
         private val addSpecialProductUseCase: AddSpecialProductUseCase,
+        private val logoutUseCase: LogoutUseCase,
         private val navigator: Navigator
 ): ViewModel() {
 
@@ -85,6 +87,13 @@ class ProductsViewModel @Inject constructor(
 
     fun onCancelAddSpecialProductClick() {
         goToShoppingCart()
+    }
+
+    fun onLogoutClick() {
+        viewModelScope.launch {
+            logoutUseCase.execute()
+            navigator.navigateToFlow(NavigationFlow.Login)
+        }
     }
 
     private fun getProducts(refresh: Boolean) {

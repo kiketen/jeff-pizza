@@ -12,6 +12,8 @@ import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetProductUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCaseImpl
+import com.jeff.pizza.products.domain.usecase.LogoutUseCase
+import com.jeff.pizza.products.domain.usecase.LogoutUseCaseImpl
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCaseImpl
 import dagger.Module
@@ -59,4 +61,11 @@ object ProductDetailsModule {
             productsResource: ProductsResource,
             dispatcher: CoroutineDispatcher
     ): AddSpecialProductUseCase = AddSpecialProductUseCaseImpl(productsResource, dispatcher)
+
+    @Provides
+    fun providesLogoutUseCase(
+            userResource: UserResource,
+            productsResource: ProductsResource,
+            dispatcher: CoroutineDispatcher
+    ): LogoutUseCase = LogoutUseCaseImpl(userResource, productsResource, dispatcher)
 }
