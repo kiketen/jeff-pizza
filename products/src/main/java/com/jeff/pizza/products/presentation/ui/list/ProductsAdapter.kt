@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jeff.pizza.core.presentation.extensions.loadImage
+import com.jeff.pizza.core.presentation.model.ProductUI
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
-import com.jeff.pizza.products.presentation.model.ProductUI
 import com.linhoapps.products.R
 import com.linhoapps.products.databinding.ProductItemBinding
 

@@ -15,7 +15,6 @@ import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState
-import com.jeff.pizza.products.presentation.model.toUI
 import com.linhoapps.products.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -93,7 +92,7 @@ class ProductsViewModel @Inject constructor(
         viewModelScope.launch {
             getProductsUseCase.execute(refresh).either(
                     onSuccess = {
-                        _uiState.postValue(ProductsUIState.ShowingContent(it.toUI()))
+                        _uiState.postValue(ProductsUIState.ShowingContent(it))
                     },
                     onError = {
                         _error.postValue(ProductsError.ErrorIndefinite(R.string.unexpected_error))

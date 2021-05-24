@@ -36,7 +36,7 @@ class UserTypeViewModel @Inject constructor(
     fun onConfirmButtonClick(userTypeUI: UserTypeUI) {
         _uiState.postValue(UserTypeUIState.Loading)
         viewModelScope.launch {
-            setUserTypeUseCase.execute(userTypeUI.toDomain())
+            setUserTypeUseCase.execute(userTypeUI)
             getProductsUseCase.execute(refresh = true).either(
                     onSuccess = {
                         navigator.navigateToFlow(NavigationFlow.Products)

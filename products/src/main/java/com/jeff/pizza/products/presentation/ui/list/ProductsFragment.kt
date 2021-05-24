@@ -14,9 +14,9 @@ import com.jeff.pizza.core.presentation.extensions.isVisible
 import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.switchVisibilityAnimated
 import com.jeff.pizza.core.presentation.extensions.visible
+import com.jeff.pizza.core.presentation.model.ProductUI
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
-import com.jeff.pizza.products.presentation.model.ProductUI
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState

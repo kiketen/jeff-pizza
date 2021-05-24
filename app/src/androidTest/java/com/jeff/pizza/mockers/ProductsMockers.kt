@@ -1,6 +1,6 @@
 package com.jeff.pizza.mockers
 
-import com.jeff.pizza.products.presentation.model.ProductUI
+import com.jeff.pizza.core.presentation.model.ProductUI
 
 
 private val heura = ProductUI(

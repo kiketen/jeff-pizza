@@ -2,7 +2,7 @@ package com.jeff.pizza.pageobject
 
 import android.content.Context
 import com.jeff.pizza.R
-import com.jeff.pizza.products.presentation.model.ProductUI
+import com.jeff.pizza.core.presentation.model.ProductUI
 import com.schibsted.spain.barista.assertion.BaristaListAssertions.assertDisplayedAtPosition
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed

@@ -15,4 +15,9 @@ sealed class Either<out L, out R> {
                 is Left -> onError(a)
                 is Right -> onSuccess(b)
             }
+
+    fun <X> map(f: (R) -> X): Either<L, X> = when (this) {
+        is Right -> Right(f(b))
+        is Left -> Left(a)
+    }
 }
