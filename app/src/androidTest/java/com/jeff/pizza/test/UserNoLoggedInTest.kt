@@ -39,25 +39,25 @@ class UserNoLoggedInTest: BaseFragmentTest() {
     }
 
     @Test
-    fun givenUserNotLoggedInWhenLoginSuccessThenShowProducts() {
+    fun givenUserNotLoggedInWhenLoginSuccessThenDoLogout() {
         sharedPreferences.clear()
         mockGetProductsSuccess()
         activityRule.launchActivity(null)
 
         SplashPageObject().assertVisible()
 
-        UserTypePageObject().apply {
-            waitForVisible(R.id.titleLogin)
+        val userTypeObject = UserTypePageObject().apply {
             assertUserTypeNotSelected()
             onUserTypeClick(R.id.singleOptionLogin)
             assertUserTypeSelected(R.id.singleOptionLogin)
             onConfirmButtonClick()
         }
-
         ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
             assertProductsVisible(singleProducts, activityRule.activity)
+            clickLogoutButton()
         }
+        userTypeObject.assertUserTypeNotSelected()
     }
 
     @Test
