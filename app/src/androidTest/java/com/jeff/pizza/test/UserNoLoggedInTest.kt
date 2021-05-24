@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import com.jeff.pizza.R
 import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.di.ApplicationModule
-import com.jeff.pizza.mockers.products
+import com.jeff.pizza.mockers.singleProducts
 import com.jeff.pizza.pageobject.ProductsPageObject
 import com.jeff.pizza.pageobject.SplashPageObject
 import com.jeff.pizza.pageobject.UserTypePageObject
@@ -56,7 +56,7 @@ class UserNoLoggedInTest: BaseFragmentTest() {
 
         ProductsPageObject().apply {
             waitForVisible(R.id.listProducts)
-            assertProductsVisible(products, activityRule.activity)
+            assertProductsVisible(singleProducts, activityRule.activity)
         }
     }
 

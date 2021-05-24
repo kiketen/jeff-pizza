@@ -17,10 +17,14 @@ class GetSpecialProductUseCaseImpl
 @Inject constructor(private val userResource: UserResource,
                     private val dispatcher: CoroutineDispatcher): GetSpecialProductUseCase {
 
+    companion object {
+        val specialProduct = SpecialProduct("Titanic", 3.5F, "€", 1)
+    }
+
     override suspend fun execute(): Either<Failure.NoData, SpecialProduct> {
         return withContext(dispatcher) {
             if (userResource.getUserType() == UserType.MARRIED) {
-                Either.Right(SpecialProduct("Titanic Movie", 3.5F, "€", 1))
+                Either.Right(specialProduct)
             } else {
                 Either.Left(Failure.NoData)
             }

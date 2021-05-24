@@ -3,6 +3,7 @@ package com.jeff.pizza.pageobject
 import android.content.Context
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.jeff.pizza.R
+import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCaseImpl.Companion.specialProduct
 import com.jeff.pizza.products.presentation.model.ProductDetailsUI
 import com.schibsted.spain.barista.assertion.BaristaListAssertions.assertDisplayedAtPosition
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
@@ -49,6 +50,14 @@ class ProductDetailsPageObject: PageObject {
         assertNotDisplayed(R.id.confirmButtonProductDetails)
     }
 
+    fun assertAddSpecialProductAlertVisible(context: Context) {
+        assertTextVisible(R.string.alert_add_special_product_title)
+        assertTextVisible(context.getString(R.string.alert_add_special_product_description,
+                specialProduct.name, specialProduct.amount, specialProduct.currency))
+        assertTextVisible(R.string.alert_add_special_product_confirm)
+        assertTextVisible(R.string.alert_add_special_product_cancel)
+    }
+
     fun clickAddButton(position: Int) {
         clickListItemChild(R.id.pricesProductDetails, position, R.id.addProductButton)
     }
@@ -61,7 +70,15 @@ class ProductDetailsPageObject: PageObject {
         clickOn(R.id.backButtonProductDetails)
     }
 
-    fun clickConfirmOrderButton(){
+    fun clickConfirmOrderButton() {
         clickOn(R.id.confirmButtonProductDetails)
+    }
+
+    fun clickShoppingCartButton() {
+        clickOn(R.id.cartButton)
+    }
+
+    fun clickConfirmSpecialProduct() {
+        clickOn(R.string.alert_add_special_product_confirm)
     }
 }

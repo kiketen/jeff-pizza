@@ -5,14 +5,18 @@ import com.jeff.pizza.base.BaseFragmentTest
 import com.jeff.pizza.core.data.repository.user.UserDataSourceRepository
 import com.jeff.pizza.core.domain.model.user.UserType
 import com.jeff.pizza.di.ApplicationModule
+import com.jeff.pizza.mockers.marriedProducts
 import com.jeff.pizza.mockers.pizzaEspencatDetails
+import com.jeff.pizza.mockers.pizzaEspencatMarriedDetails
 import com.jeff.pizza.mockers.pizzaMargaritaDetails
-import com.jeff.pizza.mockers.products
+import com.jeff.pizza.mockers.singleProducts
 import com.jeff.pizza.mockers.shoppingCartInfo
+import com.jeff.pizza.mockers.shoppingCartMarriedInfo
 import com.jeff.pizza.pageobject.ProductDetailsPageObject
 import com.jeff.pizza.pageobject.ProductsPageObject
 import com.jeff.pizza.pageobject.ShoppingCartPageObject
 import com.jeff.pizza.pageobject.SplashPageObject
+import com.jeff.pizza.products.presentation.model.ProductUI
 import com.jeff.pizza.utils.readStringFromFile
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -56,8 +60,8 @@ class UserLoggedInTest: BaseFragmentTest() {
         activityRule.launchActivity(null)
         SplashPageObject().assertVisible()
         val productsPageObject = ProductsPageObject().apply {
-            assertProductsInit()
-            clickProduct(products.lastIndex - 1)
+            assertProductsInit(singleProducts)
+            clickProduct(singleProducts.lastIndex - 1)
         }
         val productDetailsPageObject = ProductDetailsPageObject().apply {
             assertProductDetailsVisible(pizzaEspencatDetails, activityRule.activity)
@@ -76,7 +80,7 @@ class UserLoggedInTest: BaseFragmentTest() {
         productsPageObject.apply {
             waitForVisible(R.id.listProducts)
             assertCartShoppingWithProducts()
-            clickProduct(products.lastIndex)
+            clickProduct(singleProducts.lastIndex)
         }
         productDetailsPageObject.apply {
             assertProductDetailsVisible(pizzaMargaritaDetails, activityRule.activity)
@@ -92,11 +96,49 @@ class UserLoggedInTest: BaseFragmentTest() {
             clickConfirmOrderButton()
         }
         productsPageObject.apply {
-            assertProductsInit()
+            assertProductsInit(singleProducts)
         }
     }
 
-    private fun ProductsPageObject.assertProductsInit() {
+    @Test
+    fun givenMarriedUserWhenStartsAppThenCreateAnOrderWithSpecialProduct() {
+        userDataSource.setUserType(UserType.MARRIED)
+        mockServer.dispatcher = object: Dispatcher() {
+            override fun dispatch(request: RecordedRequest): MockResponse {
+                return MockResponse()
+                        .setResponseCode(200)
+                        .setBody(readStringFromFile("products.json"))
+            }
+        }
+        activityRule.launchActivity(null)
+        SplashPageObject().assertVisible()
+        val productsPageObject = ProductsPageObject().apply {
+            assertProductsInit(marriedProducts)
+            clickProduct(singleProducts.lastIndex)
+        }
+        ProductDetailsPageObject().apply {
+            assertProductDetailsVisible(pizzaEspencatMarriedDetails, activityRule.activity)
+            assertCartShoppingEmpty()
+            val positionClicked = 0
+
+            clickAddButton(positionClicked)
+            assertProductAdded(positionClicked)
+
+            clickShoppingCartButton()
+            assertAddSpecialProductAlertVisible(activityRule.activity)
+            clickConfirmSpecialProduct()
+        }
+        ShoppingCartPageObject().apply {
+            assertShoppingCartInfo(shoppingCartMarriedInfo, activityRule.activity)
+            clickConfirmOrderButton()
+        }
+        productsPageObject.apply {
+            assertProductsInit(marriedProducts)
+        }
+    }
+
+
+    private fun ProductsPageObject.assertProductsInit(products: List<ProductUI>) {
         waitForVisible(R.id.listProducts)
         assertProductsVisible(products, activityRule.activity)
         assertCartShoppingEmpty()
