@@ -58,7 +58,7 @@ class ProductsFragment: BaseFragment<ProductsFragmentBinding>() {
             shoppingCartProducts.cartButton.setSensitiveClickListener {
                 viewModel.onShoppingCartClick(binding.shoppingCartProducts.cartNotification.isVisible())
             }
-            logoutButton.setSensitiveClickListener {
+            logoutButtonProducts.setSensitiveClickListener {
                 viewModel.onLogoutClick()
             }
         }

@@ -7,7 +7,7 @@
     android:background="@color/background">
 
     <ImageButton
-        android:id="@+id/logoutButton"
+        android:id="@+id/logoutButtonProducts"
         style="@style/ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

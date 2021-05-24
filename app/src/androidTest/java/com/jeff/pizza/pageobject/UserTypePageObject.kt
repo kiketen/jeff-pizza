@@ -2,8 +2,6 @@ package com.jeff.pizza.pageobject
 
 import androidx.annotation.IdRes
 import com.jeff.pizza.login.R
-import com.jeff.pizza.utils.ConditionWatcher
-import com.jeff.pizza.utils.WaitForVisibleViewInstruction
 import com.schibsted.spain.barista.assertion.BaristaCheckedAssertions.assertChecked
 import com.schibsted.spain.barista.assertion.BaristaCheckedAssertions.assertUnchecked
 import com.schibsted.spain.barista.assertion.BaristaEnabledAssertions.assertDisabled
@@ -15,6 +13,7 @@ import com.schibsted.spain.barista.interaction.BaristaRadioButtonInteractions.cl
 class UserTypePageObject: PageObject {
 
     fun assertUserTypeNotSelected() {
+        waitForVisible(R.id.titleLogin)
         assertUnchecked(R.id.singleOptionLogin)
         assertUnchecked(R.id.marriedOptionLogin)
         assertDisabled(R.id.confirmButtonLogin)

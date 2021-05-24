@@ -6,6 +6,7 @@ import com.jeff.pizza.core.presentation.model.ProductUI
 import com.schibsted.spain.barista.assertion.BaristaListAssertions.assertDisplayedAtPosition
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
+import com.schibsted.spain.barista.interaction.BaristaClickInteractions.clickOn
 import com.schibsted.spain.barista.interaction.BaristaListInteractions.clickListItem
 import com.schibsted.spain.barista.interaction.BaristaListInteractions.scrollListToPosition
 
@@ -33,5 +34,9 @@ class ProductsPageObject: PageObject {
     fun clickProduct(itemPosition: Int) {
         scrollListToPosition(R.id.listProducts, itemPosition)
         clickListItem(R.id.listProducts, itemPosition)
+    }
+
+    fun clickLogoutButton(){
+        clickOn(R.id.logoutButtonProducts)
     }
 }
