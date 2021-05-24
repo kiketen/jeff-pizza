@@ -37,6 +37,17 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/shopping_cart_product" />
 
+            <TextView
+                android:id="@+id/specialProductTitleShoppingCart"
+                style="@style/Heading1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/shopping_cart_video_title"
+                android:textColor="@color/pureBlack" />
+
             <include
                 android:id="@+id/specialProductShoppingCart"
                 layout="@layout/shopping_cart_price"

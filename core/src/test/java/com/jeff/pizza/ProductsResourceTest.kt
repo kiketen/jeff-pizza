@@ -34,7 +34,8 @@ class ProductsResourceTest {
             size = productSize,
             amount = 0F,
             customerSatisfaction = 0,
-            count = 2
+            count = 2,
+            currency = "€"
     )
     private val product = Product(
             id = productId,

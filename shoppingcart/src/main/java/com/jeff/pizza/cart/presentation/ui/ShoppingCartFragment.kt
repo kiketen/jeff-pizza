@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.jeff.pizza.cart.R
+import com.jeff.pizza.cart.databinding.ShoppingCartFragmentBinding
 import com.jeff.pizza.cart.presentation.model.ShoppingCartInfoUI
 import com.jeff.pizza.cart.presentation.model.ShoppingCartUIState
 import com.jeff.pizza.core.presentation.extensions.gone
@@ -12,8 +14,6 @@ import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
-import com.jeff.pizza.cart.R
-import com.jeff.pizza.cart.databinding.ShoppingCartFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -67,9 +67,11 @@ class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
         productsAdapter.updateItems(shoppingCartInfoUI.products)
         with(binding) {
             if (shoppingCartInfoUI.specialProduct == null) {
+                specialProductTitleShoppingCart.gone()
                 specialProductShoppingCart.contentShoppingCart.gone()
                 specialProductShoppingCart.priceShoppingCart.gone()
             } else {
+                specialProductTitleShoppingCart.visible()
                 specialProductShoppingCart.contentShoppingCart.visible()
                 specialProductShoppingCart.priceShoppingCart.visible()
                 specialProductShoppingCart.contentShoppingCart.text = getString(R.string.shopping_cart_product_info,
