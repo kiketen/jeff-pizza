@@ -1,6 +1,6 @@
 package com.jeff.pizza.cart.presentation.model
 
-import com.jeff.pizza.cart.domain.model.ShoppingCartInfo
+import com.jeff.pizza.core.domain.model.shoppingcart.ShoppingCartInfo
 
 
 data class ShoppingCartInfoUI(

@@ -8,7 +8,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 import com.jeff.pizza.core.presentation.extensions.isVisible
 import com.jeff.pizza.core.presentation.extensions.loadImage
 import com.jeff.pizza.core.presentation.extensions.observe
@@ -17,6 +19,7 @@ import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.jeff.pizza.products.presentation.model.ProductDetailsUI
 import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
+import com.linhoapps.products.R
 import com.linhoapps.products.databinding.ProductDetailsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,6 +73,7 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
             observe(viewModel.uiState, ::renderUIState)
             observe(viewModel.shoppingCartWithProducts, ::handleShoppingCartWithProducts)
             observe(viewModel.error, ::showError)
+            observe(viewModel.askForSpecialProduct, ::showSpecialProductAlert)
         }
     }
 
@@ -104,5 +108,21 @@ class ProductDetailsFragment: BaseFragment<ProductDetailsFragmentBinding>() {
         with(binding) {
             Snackbar.make(root, textId, Snackbar.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showSpecialProductAlert(specialProduct: SpecialProduct) {
+        MaterialAlertDialogBuilder(requireContext())
+                .setTitle(getString(R.string.alert_add_special_product_title))
+                .setMessage(getString(R.string.alert_add_special_product_description,
+                        specialProduct.name, specialProduct.amount.toString(), specialProduct.currency)
+                )
+                .setPositiveButton(getString(R.string.alert_add_special_product_confirm)) { _, _ ->
+                    viewModel.onConfirmAddSpecialProductClick(specialProduct)
+                }
+                .setNegativeButton(getString(R.string.alert_add_special_product_cancel)) { _, _ ->
+                    viewModel.onCancelAddSpecialProductClick()
+                }
+                .setCancelable(false)
+                .show()
     }
 }

@@ -2,6 +2,10 @@ package com.jeff.pizza.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jeff.pizza.core.data.repository.products.PricesDAO
+import com.jeff.pizza.core.data.repository.products.ProductsDAO
+import com.jeff.pizza.core.data.repository.products.ProductsDataSourceImpl
+import com.jeff.pizza.core.domain.repository.products.ProductsDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +28,11 @@ object ApplicationModule {
     @Singleton
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()
+
+    @Singleton
+    @Provides
+    fun providesProductsDataSource(
+            productsDAO: ProductsDAO,
+            pricesDAO: PricesDAO
+    ): ProductsDataSource = ProductsDataSourceImpl(productsDAO, pricesDAO)
 }

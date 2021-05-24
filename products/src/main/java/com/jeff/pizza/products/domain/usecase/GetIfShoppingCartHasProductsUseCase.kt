@@ -15,7 +15,7 @@ class GetIfShoppingCartHasProductsUseCaseImpl @Inject constructor(
 
     override suspend fun execute(): Boolean {
         return withContext(dispatcher) {
-            productsResource.getProductsAdded().isEmpty().not()
+            productsResource.getShoppingCartInfo().products.isEmpty().not()
         }
     }
 }

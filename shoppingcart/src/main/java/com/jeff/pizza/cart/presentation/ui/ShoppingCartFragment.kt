@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.jeff.pizza.cart.presentation.model.ShoppingCartInfoUI
 import com.jeff.pizza.cart.presentation.model.ShoppingCartUIState
+import com.jeff.pizza.core.presentation.extensions.gone
 import com.jeff.pizza.core.presentation.extensions.observe
+import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.linhoapps.cart.R
@@ -64,9 +66,16 @@ class ShoppingCartFragment: BaseFragment<ShoppingCartFragmentBinding>() {
     private fun showShoppingCart(shoppingCartInfoUI: ShoppingCartInfoUI) {
         productsAdapter.updateItems(shoppingCartInfoUI.products)
         with(binding) {
-            shoppingCartInfoUI.specialProduct?.let {
-                specialProductShoppingCart.contentShoppingCart.text = getString(R.string.shopping_cart_product_info, it.count, it.text)
-                specialProductShoppingCart.priceShoppingCart.text = getString(R.string.product_details_amount, it.amount.toString())
+            if (shoppingCartInfoUI.specialProduct == null) {
+                specialProductShoppingCart.contentShoppingCart.gone()
+                specialProductShoppingCart.priceShoppingCart.gone()
+            } else {
+                specialProductShoppingCart.contentShoppingCart.visible()
+                specialProductShoppingCart.priceShoppingCart.visible()
+                specialProductShoppingCart.contentShoppingCart.text = getString(R.string.shopping_cart_product_info,
+                        shoppingCartInfoUI.specialProduct.count, shoppingCartInfoUI.specialProduct.text)
+                specialProductShoppingCart.priceShoppingCart.text = getString(R.string.product_details_amount,
+                        shoppingCartInfoUI.specialProduct.amount.toString())
             }
             totalAmountShoppingCart.text = getString(R.string.shopping_cart_total_amount, shoppingCartInfoUI.totalAmount.toString())
         }

@@ -3,6 +3,8 @@ package com.jeff.pizza.mockers
 import com.jeff.pizza.cart.presentation.model.ShoppingCartInfoUI
 import com.jeff.pizza.cart.presentation.model.ShoppingCartPriceUI
 import com.jeff.pizza.cart.presentation.model.ShoppingCartProductUI
+import com.jeff.pizza.cart.presentation.model.toUI
+import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCaseImpl.Companion.specialProduct
 
 
 val shoppingCartInfo = ShoppingCartInfoUI(
@@ -30,4 +32,21 @@ val shoppingCartInfo = ShoppingCartInfoUI(
         ),
         specialProduct = null,
         totalAmount = 27.0F
+)
+
+val shoppingCartMarriedInfo = ShoppingCartInfoUI(
+        products = listOf(
+                ShoppingCartProductUI(
+                        name = pizzaEspencatMarriedDetails.name,
+                        prices = listOf(
+                                ShoppingCartPriceUI(
+                                        count = 1,
+                                        text = "XL",
+                                        amount = 15.5F
+                                )
+                        )
+                )
+        ),
+        specialProduct = specialProduct.toUI(),
+        totalAmount = 19F
 )

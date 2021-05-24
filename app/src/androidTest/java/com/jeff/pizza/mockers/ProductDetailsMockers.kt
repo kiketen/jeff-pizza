@@ -27,3 +27,10 @@ val pizzaMargaritaDetails = ProductDetailsUI(
                 PriceUI("XL", 14.5F, 0),
         )
 )
+
+val pizzaEspencatMarriedDetails = pizzaEspencatDetails.copy(prices = listOf(
+        PriceUI("XL", 15.5F, 0),
+        PriceUI("L", 12.5F, 0),
+        PriceUI("M", 7.5F, 0),
+        PriceUI("S", 5.5F, 0),
+))

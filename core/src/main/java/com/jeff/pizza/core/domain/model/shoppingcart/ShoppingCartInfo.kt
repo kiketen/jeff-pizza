@@ -1,10 +1,11 @@
-package com.jeff.pizza.cart.domain.model
+package com.jeff.pizza.core.domain.model.shoppingcart
 
 import com.jeff.pizza.core.domain.model.products.Product
+import com.jeff.pizza.core.domain.model.products.SpecialProduct
 
 
 data class ShoppingCartInfo(
         val products: List<Product>,
         val specialProduct: SpecialProduct?,
-        val totalAmount: Float
+        val totalAmount: Float = 0F
 )
