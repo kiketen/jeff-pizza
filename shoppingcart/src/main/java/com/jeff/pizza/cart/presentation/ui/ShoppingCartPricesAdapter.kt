@@ -25,7 +25,8 @@ class ShoppingCartPricesAdapter(
             contentShoppingCart.text = contentShoppingCart.context.getString(
                     R.string.shopping_cart_product_info, price.count, price.text
             )
-            priceShoppingCart.text = contentShoppingCart.context.getString(R.string.product_details_amount, price.amount.toString())
+            priceShoppingCart.text = contentShoppingCart.context.getString(R.string.product_details_amount,
+                    price.amount.toString(), price.currency)
         }
     }
 

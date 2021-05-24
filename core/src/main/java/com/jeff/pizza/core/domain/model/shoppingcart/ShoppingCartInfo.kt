@@ -7,5 +7,6 @@ import com.jeff.pizza.core.domain.model.products.SpecialProduct
 data class ShoppingCartInfo(
         val products: List<Product>,
         val specialProduct: SpecialProduct?,
-        val totalAmount: Float = 0F
+        val totalAmount: Float,
+        val currency: String
 )

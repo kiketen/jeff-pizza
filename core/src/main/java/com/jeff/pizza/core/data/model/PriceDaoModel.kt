@@ -10,6 +10,7 @@ class PriceDaoModel(
         val priceId: String,
         val size: String,
         val amount: Float,
+        val currency: String,
         val count: Int,
         val productId: Long,
         val customerSatisfaction: Int
@@ -24,6 +25,7 @@ fun Price.toDao(productId: Long) =
                 priceId = productId.toString() + size,
                 size = size,
                 amount = amount,
+                currency = currency,
                 count = count,
                 productId = productId,
                 customerSatisfaction = customerSatisfaction
@@ -33,6 +35,7 @@ fun PriceDaoModel.toDomain() =
         Price(
                 size = size,
                 amount = amount,
+                currency = currency,
                 customerSatisfaction = customerSatisfaction,
                 count = count
         )

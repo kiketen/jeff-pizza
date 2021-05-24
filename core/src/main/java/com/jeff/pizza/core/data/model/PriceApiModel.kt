@@ -16,7 +16,8 @@ private fun PriceApiModel.toDomain(userType: UserType) =
                 size = size,
                 amount = amount,
                 customerSatisfaction = getCustomerSatisfaction(userType, ProductSize.fromStringName(size)),
-                count = 0
+                count = 0,
+                currency = "€"
         )
 
 private fun getCustomerSatisfaction(userType: UserType, size: ProductSize) =

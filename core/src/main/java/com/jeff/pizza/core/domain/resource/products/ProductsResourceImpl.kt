@@ -49,7 +49,7 @@ class ProductsResourceImpl
     override fun getShoppingCartInfo(): ShoppingCartInfo {
         val productsAdded = dataSourceRepository.getProductsAdded()
         val specialProduct = dataSourceRepository.getSpecialProduct()
-        return ShoppingCartInfo(productsAdded, specialProduct)
+        return ShoppingCartInfo(productsAdded, specialProduct, 0F, productsAdded.firstOrNull()?.prices?.firstOrNull()?.currency ?: "€")
     }
 
     override fun resetProductsCount() {
