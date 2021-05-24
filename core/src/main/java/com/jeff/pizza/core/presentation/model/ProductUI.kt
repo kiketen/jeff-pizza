@@ -1,4 +1,4 @@
-package com.jeff.pizza.products.presentation.model
+package com.jeff.pizza.core.presentation.model
 
 import com.jeff.pizza.core.domain.model.products.Price
 import com.jeff.pizza.core.domain.model.products.Product

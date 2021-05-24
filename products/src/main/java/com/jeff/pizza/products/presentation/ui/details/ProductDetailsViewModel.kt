@@ -15,7 +15,6 @@ import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
-import com.jeff.pizza.products.presentation.model.toDetailsUI
 import com.linhoapps.products.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -46,7 +45,7 @@ class ProductDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             _shoppingCartWithProducts.postValue(getIfShoppingCartHasProductsUseCase.execute())
             val product = getProductUseCase.execute(productId)
-            _uiState.postValue(ProductDetailsUIState.ShowingContent(product.toDetailsUI()))
+            _uiState.postValue(ProductDetailsUIState.ShowingContent(product))
         }
     }
 
@@ -58,14 +57,14 @@ class ProductDetailsViewModel @Inject constructor(
         _shoppingCartWithProducts.postValue(true)
         viewModelScope.launch {
             val product = addProductUseCase.execute(productId, size)
-            _uiState.postValue(ProductDetailsUIState.ShowingContent(product.toDetailsUI()))
+            _uiState.postValue(ProductDetailsUIState.ShowingContent(product))
         }
     }
 
     fun onRemoveClick(productId: Long, size: String) {
         viewModelScope.launch {
             val product = removeProductUseCase.execute(productId, size)
-            _uiState.postValue(ProductDetailsUIState.ShowingContent(product.toDetailsUI()))
+            _uiState.postValue(ProductDetailsUIState.ShowingContent(product))
             _shoppingCartWithProducts.postValue(getIfShoppingCartHasProductsUseCase.execute())
         }
     }
