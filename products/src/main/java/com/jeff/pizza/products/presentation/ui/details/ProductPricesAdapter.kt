@@ -7,8 +7,8 @@ import com.jeff.pizza.core.presentation.extensions.invisible
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
 import com.jeff.pizza.products.presentation.model.PriceUI
-import com.linhoapps.products.R
-import com.linhoapps.products.databinding.ProductPriceItemBinding
+import com.jeff.pizza.products.R
+import com.jeff.pizza.products.databinding.ProductPriceItemBinding
 
 class ProductPricesAdapter(
         private val prices: MutableList<PriceUI>,

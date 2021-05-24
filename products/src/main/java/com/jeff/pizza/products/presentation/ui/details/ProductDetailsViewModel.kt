@@ -15,7 +15,7 @@ import com.jeff.pizza.products.domain.usecase.GetProductUseCase
 import com.jeff.pizza.products.domain.usecase.GetSpecialProductUseCase
 import com.jeff.pizza.products.domain.usecase.RemoveProductUseCase
 import com.jeff.pizza.products.presentation.model.ProductDetailsUIState
-import com.linhoapps.products.R
+import com.jeff.pizza.products.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

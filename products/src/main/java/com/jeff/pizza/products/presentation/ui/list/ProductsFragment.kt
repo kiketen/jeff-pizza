@@ -20,8 +20,8 @@ import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState
-import com.linhoapps.products.R
-import com.linhoapps.products.databinding.ProductsFragmentBinding
+import com.jeff.pizza.products.R
+import com.jeff.pizza.products.databinding.ProductsFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

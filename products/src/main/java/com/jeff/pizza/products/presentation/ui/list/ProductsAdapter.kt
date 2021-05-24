@@ -7,8 +7,8 @@ import com.jeff.pizza.core.presentation.extensions.loadImage
 import com.jeff.pizza.core.presentation.model.ProductUI
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
-import com.linhoapps.products.R
-import com.linhoapps.products.databinding.ProductItemBinding
+import com.jeff.pizza.products.R
+import com.jeff.pizza.products.databinding.ProductItemBinding
 
 class ProductsAdapter(
         private val products: MutableList<ProductUI>,

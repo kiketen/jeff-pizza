@@ -12,8 +12,8 @@ import com.jeff.pizza.core.presentation.extensions.observe
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseFragment
 import com.jeff.pizza.core.presentation.utils.setSensitiveClickListener
-import com.linhoapps.cart.R
-import com.linhoapps.cart.databinding.ShoppingCartFragmentBinding
+import com.jeff.pizza.cart.R
+import com.jeff.pizza.cart.databinding.ShoppingCartFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,7 +1,7 @@
 package com.jeff.pizza.navigation
 
 import androidx.navigation.NavController
-import com.linhoapps.navigation.MainNavGraphDirections
+import com.jeff.pizza.navigation.MainNavGraphDirections
 import javax.inject.Inject
 
 

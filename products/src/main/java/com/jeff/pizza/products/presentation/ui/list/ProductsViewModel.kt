@@ -16,7 +16,7 @@ import com.jeff.pizza.products.domain.usecase.LogoutUseCase
 import com.jeff.pizza.products.presentation.model.ProductsError
 import com.jeff.pizza.products.presentation.model.ProductsNavigation
 import com.jeff.pizza.products.presentation.model.ProductsUIState
-import com.linhoapps.products.R
+import com.jeff.pizza.products.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
