@@ -6,26 +6,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jeff.pizza.core.presentation.extensions.invisible
 import com.jeff.pizza.core.presentation.extensions.visible
 import com.jeff.pizza.core.presentation.ui.BaseAdapter
-import com.jeff.pizza.products.presentation.model.PriceUI
 import com.jeff.pizza.products.R
 import com.jeff.pizza.products.databinding.ProductPriceItemBinding
+import com.jeff.pizza.products.presentation.model.PriceUI
 
 class ProductPricesAdapter(
         private val prices: MutableList<PriceUI>,
         private val onAddClick: (String) -> Unit,
         private val onRemoveClick: (String) -> Unit
-): BaseAdapter<ProductPricesAdapter.ViewHolder, ProductPriceItemBinding, PriceUI>(prices) {
+): BaseAdapter<ProductPricesAdapter.ViewHolder, PriceUI>(prices) {
 
-    inner class ViewHolder(binding: ProductPriceItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(binding: ProductPriceItemBinding): RecyclerView.ViewHolder(binding.root) {
+        val sizeProductDetails = binding.sizeProductDetails
+        val amountProductDetails = binding.amountProductDetails
+        val productsNumber = binding.productsNumber
+        val addProductButton = binding.addProductButton
+        val removeProductButton = binding.removeProductButton
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        setBinding(ProductPriceItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-        return ViewHolder(binding)
+        return ViewHolder(ProductPriceItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val productPrice = prices[position]
-        with(binding) {
+        with(holder) {
             sizeProductDetails.text = sizeProductDetails.context.getString(R.string.product_details_size, productPrice.size)
             amountProductDetails.text = amountProductDetails.context.getString(R.string.product_details_amount,
                     productPrice.amount.toString(), productPrice.currency)
@@ -40,26 +45,26 @@ class ProductPricesAdapter(
         }
     }
 
-    private fun ProductPriceItemBinding.handleRemoveButtonVisibility(count: Int) {
+    private fun ViewHolder.handleRemoveButtonVisibility(count: Int) {
         when (count) {
             0 -> removeProductButton.invisible()
             else -> removeProductButton.visible()
         }
     }
 
-    private fun ProductPriceItemBinding.addProduct(productPrice: PriceUI) {
+    private fun ViewHolder.addProduct(productPrice: PriceUI) {
         val increasedProductNumber = productsNumber.text.toString().toInt() + 1
         updateProductsNumberText(increasedProductNumber)
         onAddClick(productPrice.size)
     }
 
-    private fun ProductPriceItemBinding.removeProduct(productPrice: PriceUI) {
+    private fun ViewHolder.removeProduct(productPrice: PriceUI) {
         val decreasedProductNumber = productsNumber.text.toString().toInt() - 1
         updateProductsNumberText(decreasedProductNumber)
         onRemoveClick(productPrice.size)
     }
 
-    private fun ProductPriceItemBinding.updateProductsNumberText(increasedProductNumber: Int) {
+    private fun ViewHolder.updateProductsNumberText(increasedProductNumber: Int) {
         productsNumber.text = increasedProductNumber.toString()
         handleRemoveButtonVisibility(increasedProductNumber)
     }
